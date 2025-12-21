@@ -9,15 +9,15 @@ const techCategories = [
   },
   {
     category: 'Databases & Vector Stores',
-    technologies: ['PostgreSQL', 'MongoDB', 'Qdrant', 'Pinecone', 'Elasticsearch'],
+    technologies: ['PostgreSQL', 'SQL Server', 'MongoDB', 'Qdrant', 'Pinecone', 'Elasticsearch'],
   },
   {
     category: 'Frameworks',
-    technologies: ['FastAPI', 'Next.js', 'React', 'Node.js'],
+    technologies: ['FastAPI', 'Flask', 'Django', 'Next.js', 'React', 'Node.js'],
   },
   {
     category: 'Cloud & Infrastructure',
-    technologies: ['AWS', 'Azure', 'GCP', 'Vercel', 'Docker'],
+    technologies: ['AWS', 'Azure', 'GCP', 'Kubernetes', 'Docker', 'Vercel'],
   },
   {
     category: 'Healthcare Standards',
