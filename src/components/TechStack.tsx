@@ -1,7 +1,7 @@
 const techCategories = [
   {
     category: 'Languages',
-    technologies: ['Python', 'TypeScript', 'JavaScript', 'SQL'],
+    technologies: ['Python', 'TypeScript', 'JavaScript', 'Java', 'C++', 'C#', 'SQL'],
   },
   {
     category: 'AI & ML',
