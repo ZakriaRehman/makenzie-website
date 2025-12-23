@@ -51,17 +51,9 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-3 text-sm text-gray-400">
                 <Mail className="mt-0.5 h-5 w-5 flex-shrink-0" />
-                <div className="flex flex-col gap-1">
-                  <a href="mailto:hello@makenzie.co" className="hover:text-white">
-                    hello@makenzie.co
-                  </a>
-                  <a href="mailto:maria@makenzie.co" className="hover:text-white">
-                    maria@makenzie.co
-                  </a>
-                  <a href="mailto:zakria@makenzie.co" className="hover:text-white">
-                    zakria@makenzie.co
-                  </a>
-                </div>
+                <a href="mailto:info@makenzie.co" className="hover:text-white">
+                  info@makenzie.co
+                </a>
               </li>
             </ul>
           </div>

@@ -31,7 +31,7 @@ export default function TechStack() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Section Header */}
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-base font-semibold leading-7 text-gray-900">Tech Stack</h2>
+          <h2 className="text-base font-semibold text-gray-900 sm:text-lg">Tech Stack</h2>
           <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             Modern Technologies We Work With
           </p>

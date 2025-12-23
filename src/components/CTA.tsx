@@ -25,7 +25,7 @@ export default function CTA() {
               <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
             </a>
             <a
-              href="mailto:hello@makenzie.co"
+              href="mailto:info@makenzie.co"
               className="inline-flex items-center justify-center gap-2 rounded-lg border-2 border-white bg-transparent px-8 py-4 text-base font-semibold text-white transition-all hover:bg-white hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-900"
             >
               <Mail className="h-5 w-5" />
@@ -37,8 +37,8 @@ export default function CTA() {
           <div className="mt-12 flex flex-col items-center gap-4 border-t border-gray-700 pt-8 text-sm text-gray-400 sm:flex-row sm:justify-center sm:gap-8">
             <div className="flex items-center gap-2">
               <Mail className="h-4 w-4" />
-              <a href="mailto:hello@makenzie.co" className="hover:text-white">
-                hello@makenzie.co
+              <a href="mailto:info@makenzie.co" className="hover:text-white">
+                info@makenzie.co
               </a>
             </div>
             <div className="hidden h-4 w-px bg-gray-700 sm:block" />

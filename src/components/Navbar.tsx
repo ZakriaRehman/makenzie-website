@@ -48,6 +48,9 @@ export default function Navbar() {
           <a href="#tech-stack" className="text-sm font-medium text-gray-700 hover:text-slate-900">
             Technology
           </a>
+          <a href="#contact" className="text-sm font-medium text-gray-700 hover:text-slate-900">
+            Contact
+          </a>
         </div>
 
         {/* CTA Button */}
@@ -92,6 +95,13 @@ export default function Navbar() {
               onClick={() => setMobileMenuOpen(false)}
             >
               Technology
+            </a>
+            <a
+              href="#contact"
+              className="-mx-3 block rounded-lg px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-50"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Contact
             </a>
             <a
               href="#contact"

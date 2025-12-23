@@ -150,7 +150,7 @@ Private and proprietary. All rights reserved by Makenzie.
 
 ## Contact
 
-- **Email**: hello@makenzie.co
+- **Email**: info@makenzie.co
 - **Website**: https://makenzie.co
 - **Phone**: +92 349 4785382
 
