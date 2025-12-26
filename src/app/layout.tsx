@@ -6,13 +6,18 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-space-grotesk' })
 
 export const metadata: Metadata = {
-  title: 'Makenzie - AI & Data Engineering Solutions',
-  description: 'We build custom AI systems and data pipelines that scale - from concept to production. Specialized in AI/ML, healthcare tech, and data engineering.',
-  keywords: ['AI development', 'data engineering', 'machine learning', 'healthcare AI', 'HIPAA compliant', 'LLM integration', 'RAG systems', 'data pipelines'],
+  title: 'Makenzie - Healthcare AI & Data Engineering Solutions',
+  description: 'HIPAA-compliant AI systems and data pipelines built specifically for healthcare. Clinical documentation automation, EHR integration, and healthcare data solutions for hospitals, clinics, and health tech companies.',
+  keywords: ['healthcare AI', 'HIPAA compliant software', 'EHR integration', 'clinical documentation automation', 'HL7 FHIR', 'healthcare data engineering', 'medical practice automation', 'healthcare IT solutions', 'Epic integration', 'Cerner integration', 'telehealth platforms', 'patient portal development'],
   authors: [{ name: 'Makenzie' }],
+  icons: {
+    icon: '/favicon_no_bg.svg',
+    shortcut: '/favicon_no_bg.svg',
+    apple: '/favicon_no_bg.svg',
+  },
   openGraph: {
-    title: 'Makenzie - AI & Data Engineering Solutions',
-    description: 'We build custom AI systems and data pipelines that scale - from concept to production.',
+    title: 'Makenzie - Healthcare AI & Data Engineering Solutions',
+    description: 'HIPAA-compliant AI systems and data pipelines built specifically for healthcare organizations. Transform clinical workflows and improve patient outcomes.',
     url: 'https://makenzie.co',
     siteName: 'Makenzie',
     locale: 'en_US',
@@ -20,8 +25,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Makenzie - AI & Data Engineering Solutions',
-    description: 'We build custom AI systems and data pipelines that scale - from concept to production.',
+    title: 'Makenzie - Healthcare AI & Data Engineering Solutions',
+    description: 'HIPAA-compliant AI systems and data pipelines built specifically for healthcare organizations. Transform clinical workflows and improve patient outcomes.',
   },
   robots: {
     index: true,

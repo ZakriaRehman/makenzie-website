@@ -1,81 +1,115 @@
-import { ArrowRight, CheckCircle2 } from 'lucide-react'
+'use client'
+
+import { ArrowRight, CheckCircle2, Play } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-100 pt-24 pb-16 sm:pt-32 sm:pb-24">
+    <section className="relative overflow-hidden bg-white pt-20 pb-16 sm:pt-24 sm:pb-20">
       {/* Subtle Background Pattern */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]" />
 
-      {/* Gradient Orbs */}
-      <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-slate-200 opacity-20 blur-3xl" />
-      <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-slate-300 opacity-20 blur-3xl" />
+      {/* Subtle Gradient Orb */}
+      <div className="absolute -top-40 right-0 h-80 w-80 rounded-full bg-primary-100 opacity-30 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          {/* Badge */}
-          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 shadow-sm">
-            <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-sm font-medium text-slate-700">AI & Data Engineering Experts</span>
-          </div>
+        <div className="mx-auto max-w-2xl text-center">
+          {/* Simple Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="mb-6 inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-3 py-1 shadow-sm"
+          >
+            <div className="h-2 w-2 rounded-full bg-accent-400" />
+            <span className="text-xs font-medium text-gray-700">Healthcare AI & Data Engineering Specialists</span>
+          </motion.div>
 
           {/* Main Heading */}
-          <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-6xl lg:text-7xl">
-            Build AI Solutions That <span className="text-slate-900">Actually Work</span>
-          </h1>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl"
+          >
+            Transform Healthcare with AI Solutions That{' '}
+            <span className="text-accent-400">Actually Work</span>
+          </motion.h1>
 
           {/* Subtitle */}
-          <p className="mt-6 text-lg leading-8 text-slate-600 sm:text-xl">
-            Production-ready AI systems and data pipelines for modern businesses. From concept to deployment, we deliver solutions that scale.
-          </p>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mt-6 text-lg leading-8 text-gray-600"
+          >
+            HIPAA-compliant AI systems and data pipelines built specifically for healthcare organizations. From clinical workflows to patient engagement, we deliver solutions that improve outcomes.
+          </motion.p>
 
           {/* CTA Buttons */}
-          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4"
+          >
             <a
               href="#contact"
-              className="group inline-flex items-center justify-center gap-2 rounded-lg bg-slate-900 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-slate-900/20 transition-all hover:bg-slate-800 hover:shadow-xl hover:shadow-slate-900/30"
+              className="group inline-flex items-center justify-center gap-2 rounded-lg bg-accent-400 px-6 py-3 text-base font-semibold text-white shadow-sm hover:bg-accent-500"
             >
               Get Started
               <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
             </a>
             <a
               href="#services"
-              className="inline-flex items-center justify-center gap-2 rounded-lg border-2 border-slate-300 bg-white px-8 py-4 text-base font-semibold text-slate-900 transition-all hover:border-slate-400 hover:bg-slate-50"
+              className="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-6 py-3 text-base font-semibold text-gray-900 hover:bg-gray-50"
             >
+              <Play className="h-4 w-4" />
               View Services
             </a>
-          </div>
+          </motion.div>
 
-          {/* Trust Indicators */}
-          <div className="mt-16 grid grid-cols-3 gap-8 border-t border-slate-200 pt-8">
+          {/* Simple Stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="mt-12 grid grid-cols-3 gap-6 border-t border-gray-200 pt-8"
+          >
             <div className="text-center">
-              <div className="text-3xl font-bold text-slate-900">100%</div>
-              <div className="mt-1 text-sm text-slate-600">Client Satisfaction</div>
+              <div className="text-3xl font-bold text-gray-900">100%</div>
+              <div className="mt-1 text-sm text-gray-600">HIPAA Compliant</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-slate-900">24/7</div>
-              <div className="mt-1 text-sm text-slate-600">Support</div>
+              <div className="text-3xl font-bold text-gray-900">24/7</div>
+              <div className="mt-1 text-sm text-gray-600">Healthcare Support</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-slate-900">50%</div>
-              <div className="mt-1 text-sm text-slate-600">Cost Savings</div>
+              <div className="text-3xl font-bold text-gray-900">40%</div>
+              <div className="mt-1 text-sm text-gray-600">Faster Documentation</div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Key Features */}
-          <div className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
-            <div className="flex items-center gap-2 text-sm text-slate-700">
-              <CheckCircle2 className="h-5 w-5 text-slate-900" />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3"
+          >
+            <div className="flex items-center gap-2 text-sm text-gray-700">
+              <CheckCircle2 className="h-5 w-5 text-accent-400" />
               <span className="font-medium">HIPAA Compliant</span>
             </div>
-            <div className="flex items-center gap-2 text-sm text-slate-700">
-              <CheckCircle2 className="h-5 w-5 text-slate-900" />
+            <div className="flex items-center gap-2 text-sm text-gray-700">
+              <CheckCircle2 className="h-5 w-5 text-accent-400" />
               <span className="font-medium">Production-Ready</span>
             </div>
-            <div className="flex items-center gap-2 text-sm text-slate-700">
-              <CheckCircle2 className="h-5 w-5 text-slate-900" />
-              <span className="font-medium">Fast Turnaround</span>
+            <div className="flex items-center gap-2 text-sm text-gray-700">
+              <CheckCircle2 className="h-5 w-5 text-accent-400" />
+              <span className="font-medium">Healthcare Domain Expertise</span>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
