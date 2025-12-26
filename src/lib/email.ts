@@ -80,7 +80,7 @@ export async function sendContactEmail(data: ContactFormData): Promise<void> {
   try {
     const resend = getResendClient()
     const response = await resend.emails.send({
-      from: 'Makenzie Website <onboarding@resend.dev>',
+      from: 'Makenzie Website <noreply@makenzie.co>',
       to: process.env.CONTACT_EMAIL || 'info@makenzie.co',
       replyTo: data.email,
       subject: `New Contact: ${data.name} from ${data.company}`,
