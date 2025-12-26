@@ -1,9 +1,14 @@
 'use client'
 
+import { useState } from 'react'
+import dynamic from 'next/dynamic'
 import { Calendar, Mail, ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
 
+const CalendlyWidget = dynamic(() => import('./CalendlyWidget'), { ssr: false })
+
 export default function CTA() {
+  const [isCalendlyOpen, setIsCalendlyOpen] = useState(false)
   return (
     <section id="contact" className="relative overflow-hidden bg-gradient-to-br from-primary-500 to-accent-400 py-24 sm:py-32">
       {/* Animated Background Orbs */}
@@ -57,16 +62,14 @@ export default function CTA() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6"
           >
-            <a
-              href="https://calendly.com/makenzie"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={() => setIsCalendlyOpen(true)}
               className="group inline-flex items-center justify-center gap-2 rounded-lg bg-white px-8 py-4 text-base font-semibold text-primary-500 shadow-lg shadow-black/20 transition-all duration-300 hover:scale-105 hover:bg-gray-50 hover:shadow-xl hover:shadow-black/30 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary-500"
             >
               <Calendar className="h-5 w-5" />
               Schedule Free Consultation
               <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-            </a>
+            </button>
             <a
               href="mailto:info@makenzie.co"
               className="inline-flex items-center justify-center gap-2 rounded-lg border-2 border-white/50 glass-dark px-8 py-4 text-base font-semibold text-white shadow-lg shadow-black/10 transition-all duration-300 hover:scale-105 hover:border-white hover:bg-white/10 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary-500"
@@ -116,6 +119,12 @@ export default function CTA() {
           </motion.div>
         </motion.div>
       </div>
+
+      {/* Calendly Widget */}
+      <CalendlyWidget
+        isOpen={isCalendlyOpen}
+        onClose={() => setIsCalendlyOpen(false)}
+      />
     </section>
   )
 }
