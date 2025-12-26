@@ -1,9 +1,14 @@
 'use client'
 
+import { useState } from 'react'
+import dynamic from 'next/dynamic'
 import { ArrowRight, CheckCircle2, Play } from 'lucide-react'
 import { motion } from 'framer-motion'
 
+const CalendlyWidget = dynamic(() => import('./CalendlyWidget'), { ssr: false })
+
 export default function Hero() {
+  const [isCalendlyOpen, setIsCalendlyOpen] = useState(false)
   return (
     <section className="relative overflow-hidden bg-white pt-20 pb-16 sm:pt-24 sm:pb-20">
       {/* Subtle Background Pattern */}
@@ -53,13 +58,13 @@ export default function Hero() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4"
           >
-            <a
-              href="#contact"
+            <button
+              onClick={() => setIsCalendlyOpen(true)}
               className="group inline-flex items-center justify-center gap-2 rounded-lg bg-accent-400 px-6 py-3 text-base font-semibold text-white shadow-sm hover:bg-accent-500"
             >
               Get Started
               <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-            </a>
+            </button>
             <a
               href="#services"
               className="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-6 py-3 text-base font-semibold text-gray-900 hover:bg-gray-50"
@@ -112,6 +117,12 @@ export default function Hero() {
           </motion.div>
         </div>
       </div>
+
+      {/* Calendly Widget */}
+      <CalendlyWidget
+        isOpen={isCalendlyOpen}
+        onClose={() => setIsCalendlyOpen(false)}
+      />
     </section>
   )
 }

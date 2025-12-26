@@ -1,7 +1,11 @@
 'use client'
 
+import { useState } from 'react'
+import dynamic from 'next/dynamic'
 import { Shield, FileText, Users, Rocket } from 'lucide-react'
 import { motion } from 'framer-motion'
+
+const CalendlyWidget = dynamic(() => import('./CalendlyWidget'), { ssr: false })
 
 const steps = [
   {
@@ -31,6 +35,8 @@ const steps = [
 ]
 
 export default function Process() {
+  const [isCalendlyOpen, setIsCalendlyOpen] = useState(false)
+
   return (
     <section id="process" className="bg-gradient-to-b from-white via-gray-50 to-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -111,15 +117,21 @@ export default function Process() {
             <p className="mt-4 text-lg text-primary-100">
               Schedule a free consultation to discuss your healthcare IT needs
             </p>
-            <a
-              href="#contact"
+            <button
+              onClick={() => setIsCalendlyOpen(true)}
               className="mt-8 inline-flex items-center justify-center rounded-lg bg-white px-8 py-3.5 text-base font-semibold text-primary-500 shadow-lg transition-all duration-300 hover:scale-105 hover:bg-gray-50 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary-500"
             >
               Schedule Free Consultation
-            </a>
+            </button>
           </div>
         </motion.div>
       </div>
+
+      {/* Calendly Widget */}
+      <CalendlyWidget
+        isOpen={isCalendlyOpen}
+        onClose={() => setIsCalendlyOpen(false)}
+      />
     </section>
   )
 }
