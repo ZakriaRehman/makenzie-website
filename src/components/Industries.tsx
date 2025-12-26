@@ -57,17 +57,17 @@ export default function Industries() {
           </p>
         </motion.div>
 
-        {/* Industries Grid with Fast Cascade */}
-        <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 sm:mt-20 sm:grid-cols-2 lg:max-w-none lg:grid-cols-3 xl:grid-cols-4">
+        {/* Industries Grid - Balanced 3x2 Layout */}
+        <div className="mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-3">
           {industries.map((industry, index) => (
             <motion.div
               key={industry.name}
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
+              transition={{ duration: 0.4, delay: index * 0.08 }}
               whileHover={{ y: -8 }}
-              className="group flex flex-col items-center rounded-2xl bg-white p-6 text-center shadow-card ring-1 ring-gray-200 transition-all hover:shadow-card-hover hover:ring-primary-300"
+              className="group flex flex-col items-center rounded-2xl bg-white p-8 text-center shadow-card ring-1 ring-gray-200 transition-all hover:shadow-card-hover hover:ring-primary-300"
             >
               {/* Icon with Gradient Background and Wiggle Animation */}
               <motion.div

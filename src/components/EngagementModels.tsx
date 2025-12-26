@@ -7,20 +7,20 @@ const models = [
   {
     icon: Code,
     title: 'Software Development Outsourcing',
-    description: 'Building your software with our expert team.',
-    details: 'Complete end-to-end software development handled by our experienced engineers. From ideation to deployment, we take full ownership of your project while keeping you in the loop at every stage.',
+    description: 'Build your healthcare software with our expert team.',
+    details: 'HIPAA-compliant, clinically-validated solutions from design to deployment. Complete end-to-end healthcare software development handled by engineers who understand both technology and clinical workflows.',
   },
   {
     icon: Users,
-    title: 'Dedicated Teams',
-    description: 'Long term, integrated teams for your project success.',
-    details: 'Get a fully committed team that works exclusively on your project. They integrate seamlessly with your processes and become an extension of your in-house team for consistent, long-term collaboration.',
+    title: 'Dedicated Healthcare Teams',
+    description: 'Long-term, integrated teams specializing in healthcare IT.',
+    details: 'Embedded developers and data engineers who understand your clinical workflows. They integrate seamlessly with your processes and become an extension of your in-house team for consistent, long-term collaboration on healthcare projects.',
   },
   {
     icon: UserPlus,
-    title: 'IT Staff Augmentation',
-    description: 'Quick engagement to boost your team.',
-    details: 'Scale your team quickly with skilled professionals who fill specific roles and expertise gaps. Perfect for short-term needs or when you need specialized skills for particular project phases.',
+    title: 'Healthcare IT Staff Augmentation',
+    description: 'Scale quickly with healthcare IT professionals.',
+    details: 'Fill expertise gaps with developers experienced in HIPAA, HL7/FHIR, and healthcare systems. Perfect for short-term needs or when you need specialized healthcare IT skills for particular project phases.',
   },
 ]
 

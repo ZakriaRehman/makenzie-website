@@ -15,18 +15,17 @@ export default function ContactFormSection({ onOpenModal }: ContactFormSectionPr
             className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
             style={{ fontFamily: "'Times New Roman', Georgia, serif" }}
           >
-            How can we help you?
+            Ready to Transform Your Healthcare Operations?
           </h2>
           <p className="mt-6 text-lg leading-8 text-gray-600">
-            Are you ready to push boundaries and explore new frontiers of innovation?
-            Let's discuss how we can bring your vision to life with cutting-edge AI and data engineering solutions.
+            Let's discuss how we can help you improve clinical efficiency, enhance patient care, and maintain HIPAA compliance with AI-powered healthcare solutions.
           </p>
 
           {/* CTA Button */}
           <div className="mt-10">
             <button
               onClick={onOpenModal}
-              className="group inline-flex items-center justify-center gap-2 rounded-lg bg-slate-900 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:bg-slate-800 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2"
+              className="group inline-flex items-center justify-center gap-2 rounded-lg bg-accent-400 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:bg-accent-500 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-accent-400 focus:ring-offset-2"
             >
               LET'S WORK TOGETHER
               <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />

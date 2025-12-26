@@ -1,7 +1,14 @@
 import { Resend } from 'resend'
 import type { ContactFormData } from '@/types/contact'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+// Lazy initialization to avoid build-time errors when env var is missing
+function getResendClient() {
+  const apiKey = process.env.RESEND_API_KEY
+  if (!apiKey) {
+    throw new Error('RESEND_API_KEY environment variable is not set')
+  }
+  return new Resend(apiKey)
+}
 
 function generateEmailHTML(data: ContactFormData): string {
   return `
@@ -71,8 +78,9 @@ function generateEmailHTML(data: ContactFormData): string {
 
 export async function sendContactEmail(data: ContactFormData): Promise<void> {
   try {
+    const resend = getResendClient()
     const response = await resend.emails.send({
-      from: 'Makenzie Website <noreply@makenzie.co>',
+      from: 'Makenzie Website <onboarding@resend.dev>',
       to: process.env.CONTACT_EMAIL || 'info@makenzie.co',
       replyTo: data.email,
       subject: `New Contact: ${data.name} from ${data.company}`,

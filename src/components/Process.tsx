@@ -1,32 +1,32 @@
 'use client'
 
-import { Phone, FileText, Code, Rocket } from 'lucide-react'
+import { Shield, FileText, Users, Rocket } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 const steps = [
   {
     number: '01',
-    icon: Phone,
-    title: 'Discovery Call',
-    description: 'We start with a free consultation to understand your business needs, technical requirements, and project goals.',
+    icon: Shield,
+    title: 'Discovery & Compliance Review',
+    description: 'Free consultation to understand your clinical workflows, technical requirements, and compliance needs. We review your existing systems (EHR, practice management) and identify integration opportunities.',
   },
   {
     number: '02',
     icon: FileText,
-    title: 'Proposal & Planning',
-    description: 'Receive a detailed proposal with clear scope, timeline, and pricing. No surprises, just transparent planning.',
+    title: 'Proposal & Security Assessment',
+    description: 'Detailed proposal with clear scope, HIPAA compliance plan, security assessment, and integration roadmap. Transparent pricing with no surprises.',
   },
   {
     number: '03',
-    icon: Code,
-    title: 'Development',
-    description: 'Our team builds your solution with regular updates, demos, and feedback sessions to ensure we\'re on track.',
+    icon: Users,
+    title: 'Development & Clinical Validation',
+    description: 'Agile development with regular demos to your clinical and administrative staff. Iterative feedback ensures the solution fits your real-world workflows.',
   },
   {
     number: '04',
     icon: Rocket,
-    title: 'Deployment & Support',
-    description: 'We launch your solution to production and provide ongoing maintenance and support to ensure success.',
+    title: 'Deployment & Ongoing Support',
+    description: 'Production launch with staff training, compliance documentation, and 24/7 support. Ongoing maintenance and updates to keep your system secure and compliant.',
   },
 ]
 
@@ -107,9 +107,9 @@ export default function Process() {
           />
 
           <div className="relative">
-            <h3 className="text-2xl font-bold text-white sm:text-3xl">Ready to get started?</h3>
+            <h3 className="text-2xl font-bold text-white sm:text-3xl">Ready to transform your healthcare operations?</h3>
             <p className="mt-4 text-lg text-primary-100">
-              Schedule a free consultation call to discuss your project
+              Schedule a free consultation to discuss your healthcare IT needs
             </p>
             <a
               href="#contact"

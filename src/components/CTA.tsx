@@ -43,10 +43,10 @@ export default function CTA() {
           className="mx-auto max-w-2xl text-center"
         >
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Let's Build Something Great Together
+            Transform Your Healthcare Operations with AI
           </h2>
           <p className="mt-6 text-lg leading-8 text-white/90">
-            Schedule a free consultation to discuss your project. No obligation, no sales pressure — just a genuine conversation about how we can help you succeed.
+            Schedule a free consultation to discuss your healthcare IT needs. No obligation, no sales pressure — just a genuine conversation about improving your clinical workflows and patient outcomes.
           </p>
 
           {/* CTA Buttons */}
