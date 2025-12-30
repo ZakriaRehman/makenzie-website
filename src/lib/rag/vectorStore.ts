@@ -14,8 +14,8 @@ export const getQdrantClient = () => {
 // Search for similar documents
 export async function searchSimilar(
   queryEmbedding: number[],
-  topK: number = 4,
-  scoreThreshold: number = 0.7
+  topK: number = 6,
+  scoreThreshold: number = 0.5
 ) {
   const client = getQdrantClient();
 

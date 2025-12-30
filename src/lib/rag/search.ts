@@ -17,8 +17,8 @@ export interface RAGContext {
 // Retrieve relevant context for a query
 export async function retrieveContext(
   query: string,
-  topK: number = 4,
-  scoreThreshold: number = 0.7
+  topK: number = 6,
+  scoreThreshold: number = 0.5
 ): Promise<RAGContext> {
   try {
     // Generate embedding for the query
@@ -58,12 +58,12 @@ export function buildRAGPrompt(query: string, context: string): string {
 
   return `You are Marie, an AI assistant for makenzie.co, a leading healthcare IT services provider.
 
-Use the following context from our documentation to answer the user's question. If the context doesn't contain relevant information, provide a helpful response based on your general knowledge about healthcare IT services.
+IMPORTANT: Use the following context from our company documentation to answer the user's question accurately. This context contains verified information about our company, services, contact details, and offerings. Always prioritize information from the context below.
 
-CONTEXT:
+CONTEXT FROM DOCUMENTATION:
 ${context}
 
 USER QUESTION: ${query}
 
-Please provide a helpful and accurate response:`;
+Based on the context above, provide a helpful, accurate, and professional response. If the answer is in the context, use it directly. If the context doesn't fully answer the question, acknowledge what information is available and provide helpful guidance.`;
 }
