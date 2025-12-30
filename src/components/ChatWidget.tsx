@@ -21,23 +21,19 @@ function ChatWidget() {
   const quickQuestions = [
     {
       text: 'What services does Makenzie offer?',
-      icon: '💼',
-      gradient: 'gradient-1'
+      icon: '💼'
     },
     {
       text: 'How can I contact your team?',
-      icon: '📞',
-      gradient: 'gradient-2'
+      icon: '📞'
     },
     {
       text: 'What industries do you serve?',
-      icon: '🏥',
-      gradient: 'gradient-3'
+      icon: '🏥'
     },
     {
       text: 'Tell me about your expertise',
-      icon: '⭐',
-      gradient: 'gradient-4'
+      icon: '⭐'
     }
   ]
 
@@ -78,7 +74,6 @@ How can I assist you today?`
 
   const handleQuickQuestion = (question: string) => {
     if (isLoading) return
-    setShowQuickQuestions(false)
     handleSend(question)
   }
 
@@ -97,11 +92,6 @@ How can I assist you today?`
     setInput('')
     setIsLoading(true)
     setError(null)
-
-    // Hide quick questions after first interaction
-    if (showQuickQuestions) {
-      setShowQuickQuestions(false)
-    }
 
     // Create new AbortController for this request
     const controller = new AbortController()
@@ -175,12 +165,12 @@ How can I assist you today?`
           </div>
         )}
 
-        {messages.length === 0 && showQuickQuestions && (
+        {showQuickQuestions && (
           <div className="quick-questions">
             {quickQuestions.map((q, index) => (
               <button
                 key={index}
-                className={`quick-question-chip ${q.gradient}`}
+                className="quick-question-chip"
                 onClick={() => handleQuickQuestion(q.text)}
                 disabled={isLoading}
               >
