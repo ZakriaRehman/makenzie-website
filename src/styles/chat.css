@@ -175,21 +175,22 @@
   background: #a0aec0;
 }
 
-.message {
-  max-width: 80%;
-  padding: 13px 17px;
-  border-radius: 18px;
-  word-wrap: break-word;
-  line-height: 1.65;
-  font-size: 14.5px;
-  animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  font-weight: 400;
+/* Message Container with Avatar */
+.message-container {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@keyframes slideIn {
+.message-container.user {
+  flex-direction: row-reverse;
+}
+
+@keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -197,8 +198,77 @@
   }
 }
 
+.message-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  background: #f1f5f9;
+  flex-shrink: 0;
+  border: 1px solid #e2e8f0;
+}
+
+.message-container.user .message-avatar {
+  background: linear-gradient(135deg, #3eb5aa 0%, #35a094 100%);
+  border: none;
+}
+
+.message-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 75%;
+  position: relative;
+}
+
+.message-container.user .message-content-wrapper {
+  align-items: flex-end;
+}
+
+.copy-button {
+  align-self: flex-start;
+  padding: 6px 8px;
+  background: transparent;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #64748b;
+  transition: all 0.2s;
+  opacity: 0;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.message-content-wrapper:hover .copy-button {
+  opacity: 1;
+}
+
+.copy-button:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e0;
+  color: #3eb5aa;
+}
+
+.copy-button:active {
+  transform: scale(0.95);
+}
+
+.message {
+  max-width: 100%;
+  padding: 13px 17px;
+  border-radius: 18px;
+  word-wrap: break-word;
+  line-height: 1.65;
+  font-size: 14.5px;
+  font-weight: 400;
+}
+
 .message.user {
-  align-self: flex-end;
   background: linear-gradient(135deg, #3eb5aa 0%, #35a094 100%);
   color: #ffffff;
   border-bottom-right-radius: 6px;
@@ -207,7 +277,6 @@
 }
 
 .message.assistant {
-  align-self: flex-start;
   background: #f8fafc;
   color: #1e293b;
   border-bottom-left-radius: 6px;
