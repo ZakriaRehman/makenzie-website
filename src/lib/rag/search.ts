@@ -14,11 +14,11 @@ export interface RAGContext {
   context: string;
 }
 
-// Retrieve relevant context for a query (no threshold - get all results)
+// Retrieve relevant context for a query
 export async function retrieveContext(
   query: string,
-  topK: number = 10,
-  scoreThreshold: number = 0
+  topK: number = 5,
+  scoreThreshold: number = 0.3
 ): Promise<RAGContext> {
   try {
     // Generate embedding for the query
