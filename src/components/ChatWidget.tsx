@@ -165,22 +165,6 @@ How can I assist you today?`
           </div>
         )}
 
-        {showQuickQuestions && (
-          <div className="quick-questions">
-            {quickQuestions.map((q, index) => (
-              <button
-                key={index}
-                className="quick-question-chip"
-                onClick={() => handleQuickQuestion(q.text)}
-                disabled={isLoading}
-              >
-                <span className="chip-icon">{q.icon}</span>
-                <span className="chip-text">{q.text}</span>
-              </button>
-            ))}
-          </div>
-        )}
-
         {messages.map((msg) => (
           <div key={msg.id} className={`message ${msg.role}`}>
             {msg.role === 'assistant' ? (
@@ -203,6 +187,22 @@ How can I assist you today?`
       </div>
 
       {error && <div className="error-message">{error}</div>}
+
+      {showQuickQuestions && (
+        <div className="quick-questions">
+          {quickQuestions.map((q, index) => (
+            <button
+              key={index}
+              className="quick-question-chip"
+              onClick={() => handleQuickQuestion(q.text)}
+              disabled={isLoading}
+            >
+              <span className="chip-icon">{q.icon}</span>
+              <span className="chip-text">{q.text}</span>
+            </button>
+          ))}
+        </div>
+      )}
 
       <div className="chat-input">
         <button className="microphone-button" aria-label="Voice input">
