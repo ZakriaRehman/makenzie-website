@@ -2,7 +2,8 @@ import { NextRequest } from 'next/server';
 import OpenAI from 'openai';
 import { retrieveContext, buildRAGPrompt } from '@/lib/rag/search';
 
-export const runtime = 'edge'; // Use Edge Runtime for streaming
+// Use Node.js runtime for Qdrant compatibility
+export const runtime = 'nodejs';
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY!,
@@ -26,16 +27,22 @@ export async function POST(req: NextRequest) {
 
     if (use_rag) {
       try {
+        console.log('🔍 Retrieving RAG context for:', message);
         const ragContext = await retrieveContext(message);
+        console.log(`📚 Found ${ragContext.results.length} relevant documents`);
+
         if (ragContext.context) {
           prompt = buildRAGPrompt(message, ragContext.context);
           sources = ragContext.results.map((r) => ({
             id: r.id,
             score: r.score,
           }));
+          console.log('✅ RAG context applied to prompt');
+        } else {
+          console.log('⚠️ No RAG context found, using standard prompt');
         }
       } catch (error) {
-        console.error('RAG retrieval error:', error);
+        console.error('❌ RAG retrieval error:', error);
         // Continue without RAG if it fails
       }
     }
