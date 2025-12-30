@@ -15,7 +15,31 @@ function ChatWidget() {
   const [welcomeText, setWelcomeText] = useState('')
   const [isWelcomeTyping, setIsWelcomeTyping] = useState(false)
   const [abortController, setAbortController] = useState<AbortController | null>(null)
+  const [showQuickQuestions, setShowQuickQuestions] = useState(true)
   const messagesEndRef = useRef<HTMLDivElement>(null)
+
+  const quickQuestions = [
+    {
+      text: 'What services does Makenzie offer?',
+      icon: '💼',
+      gradient: 'gradient-1'
+    },
+    {
+      text: 'How can I contact your team?',
+      icon: '📞',
+      gradient: 'gradient-2'
+    },
+    {
+      text: 'What industries do you serve?',
+      icon: '🏥',
+      gradient: 'gradient-3'
+    },
+    {
+      text: 'Tell me about your expertise',
+      icon: '⭐',
+      gradient: 'gradient-4'
+    }
+  ]
 
   const fullWelcomeMessage = `**Welcome to makenzie.co!**
 
@@ -52,13 +76,20 @@ How can I assist you today?`
     }
   }
 
-  const handleSend = async () => {
-    if (!input.trim() || isLoading) return
+  const handleQuickQuestion = (question: string) => {
+    if (isLoading) return
+    setShowQuickQuestions(false)
+    handleSend(question)
+  }
+
+  const handleSend = async (customMessage?: string) => {
+    const messageToSend = customMessage || input.trim()
+    if (!messageToSend || isLoading) return
 
     const userMessage: Message = {
       id: Date.now().toString(),
       role: 'user',
-      content: input.trim(),
+      content: messageToSend,
       timestamp: new Date(),
     }
 
@@ -66,6 +97,11 @@ How can I assist you today?`
     setInput('')
     setIsLoading(true)
     setError(null)
+
+    // Hide quick questions after first interaction
+    if (showQuickQuestions) {
+      setShowQuickQuestions(false)
+    }
 
     // Create new AbortController for this request
     const controller = new AbortController()
@@ -139,6 +175,22 @@ How can I assist you today?`
           </div>
         )}
 
+        {messages.length === 0 && showQuickQuestions && (
+          <div className="quick-questions">
+            {quickQuestions.map((q, index) => (
+              <button
+                key={index}
+                className={`quick-question-chip ${q.gradient}`}
+                onClick={() => handleQuickQuestion(q.text)}
+                disabled={isLoading}
+              >
+                <span className="chip-icon">{q.icon}</span>
+                <span className="chip-text">{q.text}</span>
+              </button>
+            ))}
+          </div>
+        )}
+
         {messages.map((msg) => (
           <div key={msg.id} className={`message ${msg.role}`}>
             {msg.role === 'assistant' ? (
@@ -190,7 +242,7 @@ How can I assist you today?`
         />
         <button
           className="send-button"
-          onClick={isLoading ? handleStop : handleSend}
+          onClick={isLoading ? handleStop : () => handleSend()}
           disabled={!isLoading && !input.trim()}
           aria-label={isLoading ? "Stop generating" : "Send message"}
         >
