@@ -16,6 +16,7 @@ config({ path: resolve(process.cwd(), '.env.local') });
 
 import { readFileSync, readdirSync, statSync } from 'fs';
 import { join, extname } from 'path';
+import { randomUUID } from 'crypto';
 import { getEmbeddings } from '../src/lib/rag/embeddings';
 import { initializeCollection, upsertChunks } from '../src/lib/rag/vectorStore';
 
@@ -121,9 +122,9 @@ async function ingestDocuments(pathToDocuments: string) {
     console.log(`   🔮 Generating embeddings...`);
     const embeddings = await getEmbeddings(chunks);
 
-    // Prepare points for Qdrant
+    // Prepare points for Qdrant (use UUID for valid point IDs)
     const points = chunks.map((content, index) => ({
-      id: `${filePath.replace(/[^a-zA-Z0-9]/g, '_')}_${Date.now()}_${index}`,
+      id: randomUUID(),
       vector: embeddings[index],
       payload: {
         content,

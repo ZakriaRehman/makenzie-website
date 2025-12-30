@@ -11,11 +11,11 @@ export const getQdrantClient = () => {
   });
 };
 
-// Search for similar documents
+// Search for similar documents (no threshold - get all results)
 export async function searchSimilar(
   queryEmbedding: number[],
-  topK: number = 6,
-  scoreThreshold: number = 0.5
+  topK: number = 10,
+  scoreThreshold: number = 0
 ) {
   const client = getQdrantClient();
 
