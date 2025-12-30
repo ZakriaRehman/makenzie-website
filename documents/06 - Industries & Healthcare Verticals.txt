@@ -1,0 +1,83 @@
+================================================================================
+MAKENZIE WEBSITE CONTENT
+INDUSTRIES & HEALTHCARE VERTICALS
+================================================================================
+
+SECTION HEADER:
+Healthcare IT Solutions
+
+SECTION TITLE:
+Healthcare IT Solutions Across All Settings
+
+SECTION SUBTITLE:
+We bring deep healthcare domain expertise to deliver solutions that understand your clinical workflows and compliance requirements
+
+--------------------------------------------------------------------------------
+INDUSTRY 1: HOSPITALS & HEALTH SYSTEMS
+--------------------------------------------------------------------------------
+
+TITLE:
+Hospitals & Health Systems
+
+DESCRIPTION:
+Enterprise AI solutions for clinical documentation, decision support, and operational efficiency across multi-facility health systems. Support for Epic, Cerner, and major EHR platforms.
+
+--------------------------------------------------------------------------------
+INDUSTRY 2: MEDICAL PRACTICES & CLINICS
+--------------------------------------------------------------------------------
+
+TITLE:
+Medical Practices & Clinics
+
+DESCRIPTION:
+Practice management automation, patient engagement tools, and AI-powered documentation for independent practices and clinic networks. From solo practitioners to multi-location groups.
+
+--------------------------------------------------------------------------------
+INDUSTRY 3: HEALTH TECH & DIGITAL HEALTH
+--------------------------------------------------------------------------------
+
+TITLE:
+Health Tech & Digital Health
+
+DESCRIPTION:
+Product development for telehealth platforms, remote patient monitoring, healthcare SaaS applications, and digital health startups. Build HIPAA-compliant products from the ground up.
+
+--------------------------------------------------------------------------------
+INDUSTRY 4: SPECIALTY HEALTHCARE PROVIDERS
+--------------------------------------------------------------------------------
+
+TITLE:
+Specialty Healthcare Providers
+
+DESCRIPTION:
+Custom solutions for behavioral health, dental practices, physical therapy, dermatology, ophthalmology, and other specialty medical providers. Domain-specific workflows and compliance.
+
+--------------------------------------------------------------------------------
+INDUSTRY 5: HEALTHCARE PAYERS & INSURANCE
+--------------------------------------------------------------------------------
+
+TITLE:
+Healthcare Payers & Insurance
+
+DESCRIPTION:
+Claims processing automation, member engagement platforms, and healthcare analytics for insurance companies, health plans, and managed care organizations.
+
+--------------------------------------------------------------------------------
+INDUSTRY 6: LIFE SCIENCES & MEDICAL DEVICES
+--------------------------------------------------------------------------------
+
+TITLE:
+Life Sciences & Medical Devices
+
+DESCRIPTION:
+Data management solutions for pharmaceutical companies, clinical research organizations, and medical device manufacturers. Support for clinical trials, regulatory compliance, and research data.
+
+--------------------------------------------------------------------------------
+NOTES
+--------------------------------------------------------------------------------
+- Six major healthcare verticals covered
+- Each vertical has specific use cases and compliance requirements
+- Range from traditional (hospitals) to modern (digital health startups)
+- Includes both providers and payers
+- Specialty providers show depth of expertise across medical disciplines
+- Life sciences segment shows breadth beyond just patient care

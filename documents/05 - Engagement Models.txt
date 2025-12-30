@@ -1,0 +1,61 @@
+================================================================================
+MAKENZIE WEBSITE CONTENT
+ENGAGEMENT MODELS
+================================================================================
+
+SECTION HEADER:
+Engagement Models
+
+SECTION TITLE:
+Flexible Ways to Work Together
+
+SECTION SUBTITLE:
+Choose the engagement model that best fits your project needs and organizational structure
+
+--------------------------------------------------------------------------------
+MODEL 1: SOFTWARE DEVELOPMENT OUTSOURCING
+--------------------------------------------------------------------------------
+
+TITLE:
+Software Development Outsourcing
+
+SHORT DESCRIPTION:
+Build your healthcare software with our expert team.
+
+FULL DESCRIPTION:
+HIPAA-compliant, clinically-validated solutions from design to deployment. Complete end-to-end healthcare software development handled by engineers who understand both technology and clinical workflows.
+
+--------------------------------------------------------------------------------
+MODEL 2: DEDICATED HEALTHCARE TEAMS
+--------------------------------------------------------------------------------
+
+TITLE:
+Dedicated Healthcare Teams
+
+SHORT DESCRIPTION:
+Long-term, integrated teams specializing in healthcare IT.
+
+FULL DESCRIPTION:
+Embedded developers and data engineers who understand your clinical workflows. They integrate seamlessly with your processes and become an extension of your in-house team for consistent, long-term collaboration on healthcare projects.
+
+--------------------------------------------------------------------------------
+MODEL 3: HEALTHCARE IT STAFF AUGMENTATION
+--------------------------------------------------------------------------------
+
+TITLE:
+Healthcare IT Staff Augmentation
+
+SHORT DESCRIPTION:
+Scale quickly with healthcare IT professionals.
+
+FULL DESCRIPTION:
+Fill expertise gaps with developers experienced in HIPAA, HL7/FHIR, and healthcare systems. Perfect for short-term needs or when you need specialized healthcare IT skills for particular project phases.
+
+--------------------------------------------------------------------------------
+NOTES
+--------------------------------------------------------------------------------
+- Three distinct engagement models for different organizational needs
+- All models emphasize healthcare-specific expertise
+- Flexibility in engagement: project-based, team-based, or staff augmentation
+- Each model highlights understanding of clinical workflows and compliance
+- Targets different use cases: full outsourcing, dedicated teams, or temporary expertise

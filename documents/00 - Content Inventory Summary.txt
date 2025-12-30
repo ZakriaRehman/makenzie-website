@@ -1,0 +1,178 @@
+================================================================================
+MAKENZIE WEBSITE - CONTENT INVENTORY SUMMARY
+================================================================================
+
+EXTRACTION DATE: December 26, 2025
+SOURCE: C:\Users\user\Documents\Makenzie\03-Website\makenzie-website
+DESTINATION: C:\Users\user\Documents\Makenzie\03-Website\Content drafts
+
+================================================================================
+DOCUMENT ORGANIZATION
+================================================================================
+
+This content extraction includes the following organized documents:
+
+01 - Hero & Main Value Proposition.txt
+   • Main headline and hero messaging
+   • Key statistics and trust indicators
+   • Primary call-to-action buttons
+
+02 - Services & Solutions.txt
+   • 6 core healthcare services
+   • Detailed features and descriptions for each service
+   • Service-specific CTAs
+
+03 - Why Choose Us & Value Propositions.txt
+   • 4 core value propositions
+   • Differentiation from competitors
+   • Benefits and outcomes
+
+04 - Process & Workflow.txt
+   • 4-step engagement process
+   • From discovery to deployment
+   • Process CTA
+
+05 - Engagement Models.txt
+   • 3 engagement options
+   • Software development outsourcing
+   • Dedicated teams and staff augmentation
+
+06 - Industries & Healthcare Verticals.txt
+   • 6 healthcare industry verticals
+   • Specific use cases per industry
+   • Compliance requirements by vertical
+
+07 - Contact & CTA Content.txt
+   • Contact form section
+   • Main CTA section
+   • Contact details and links
+
+08 - Footer & Company Information.txt
+   • Company overview and tagline
+   • Contact information
+   • Social media links
+   • Quick navigation links
+
+09 - Privacy Policy.txt
+   • Complete privacy policy content
+   • Data collection and usage policies
+   • User rights and contact information
+
+10 - SEO & Metadata.txt
+   • Page titles and meta descriptions
+   • Target keywords (primary and secondary)
+   • Open Graph and Twitter Card metadata
+   • SEO strategy notes
+
+================================================================================
+WEBSITE STRUCTURE
+================================================================================
+
+TECHNOLOGY STACK:
+• Next.js 14 (App Router)
+• React 18
+• TypeScript
+• Tailwind CSS
+• Framer Motion (animations)
+
+MAIN SECTIONS (in order):
+1. Navigation (Navbar)
+2. Hero Section
+3. Services Section
+4. Why Choose Us Section
+5. Process Section
+6. Engagement Models Section
+7. Industries Section
+8. Contact Form Section
+9. CTA Section
+10. Footer
+
+PAGES:
+• Homepage (/)
+• Privacy Policy (/privacy)
+• Terms of Service (/terms) - Referenced but not yet implemented
+
+API ROUTES:
+• Contact Form API (/api/contact)
+
+================================================================================
+KEY THEMES & MESSAGING
+================================================================================
+
+CORE VALUE PROPOSITION:
+HIPAA-compliant AI systems and data pipelines built specifically for healthcare organizations
+
+PRIMARY DIFFERENTIATORS:
+• HIPAA compliance from day one
+• Healthcare domain expertise (HL7/FHIR, clinical workflows)
+• Production-ready, enterprise-grade solutions
+• Full-lifecycle partnership (not just vendors)
+
+TARGET AUDIENCE:
+• Hospitals & Health Systems
+• Medical Practices & Clinics
+• Health Tech & Digital Health Companies
+• Specialty Healthcare Providers
+• Healthcare Payers & Insurance
+• Life Sciences & Medical Devices
+
+KEY STATISTICS:
+• 100% HIPAA Compliant
+• 24/7 Healthcare Support
+• 40% Faster Documentation
+
+================================================================================
+BRAND IDENTITY
+================================================================================
+
+COMPANY NAME:
+Makenzie
+
+TAGLINE:
+Healthcare AI & Data Engineering Specialists
+
+DESCRIPTION:
+Healthcare AI & Data Engineering Solutions. We build HIPAA-compliant systems that improve clinical workflows and patient outcomes.
+
+CONTACT INFORMATION:
+Email: info@makenzie.co
+Phone: +92 316 0557117
+Address: NASTP Delta, Lahore Cantt, Pakistan
+
+SOCIAL MEDIA:
+LinkedIn: https://www.linkedin.com/company/mcanzie/
+X (Twitter): https://x.com/Makenzie33638
+
+WEBSITE:
+https://makenzie.co
+
+BOOKING LINK:
+https://calendly.com/makenzie
+
+================================================================================
+CONTENT USAGE NOTES
+================================================================================
+
+• All content emphasizes HIPAA compliance as a foundational requirement
+• Healthcare-specific terminology used throughout (HL7/FHIR, EHR, clinical workflows)
+• Concrete, measurable outcomes highlighted (40% faster documentation, reduced time, improved satisfaction)
+• Professional, results-oriented tone targeting healthcare decision-makers
+• Multiple CTAs throughout focusing on "free consultation" and "no obligation"
+• Transparency emphasized in process and pricing
+
+================================================================================
+CONTENT MAINTENANCE
+================================================================================
+
+LAST UPDATED:
+Privacy Policy: January 2025
+Website Content: Current as of December 2025
+
+PLANNED ADDITIONS:
+• Terms of Service page (referenced in footer but not yet created)
+• Case studies or client testimonials (not currently on site)
+• Tech stack showcase (TechStack.tsx component exists but not used on main page)
+
+================================================================================
+END OF SUMMARY
+================================================================================

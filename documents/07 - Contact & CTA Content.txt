@@ -1,0 +1,64 @@
+================================================================================
+MAKENZIE WEBSITE CONTENT
+CONTACT & CALL-TO-ACTION SECTIONS
+================================================================================
+
+--------------------------------------------------------------------------------
+CONTACT FORM SECTION
+--------------------------------------------------------------------------------
+
+HEADLINE:
+How can we help you?
+
+DESCRIPTION:
+Are you ready to push boundaries and explore new frontiers of innovation?
+Let's discuss how we can bring your vision to life with cutting-edge AI and data engineering solutions.
+
+CTA BUTTON:
+LET'S WORK TOGETHER
+
+REASSURANCE TEXT:
+Quick response • No obligation • Free consultation
+
+--------------------------------------------------------------------------------
+MAIN CTA SECTION
+--------------------------------------------------------------------------------
+
+HEADLINE:
+Transform Your Healthcare Operations with AI
+
+DESCRIPTION:
+Schedule a free consultation to discuss your healthcare IT needs. No obligation, no sales pressure — just a genuine conversation about improving your clinical workflows and patient outcomes.
+
+PRIMARY CTA:
+📅 Schedule Free Consultation
+Link: https://calendly.com/makenzie
+
+SECONDARY CTA:
+✉️ Email Us
+Link: mailto:info@makenzie.co
+
+--------------------------------------------------------------------------------
+CONTACT DETAILS (in CTA Section)
+--------------------------------------------------------------------------------
+
+EMAIL:
+info@makenzie.co
+
+PHONE:
++92 316 0557117
+
+--------------------------------------------------------------------------------
+REASSURANCE (in CTA Section)
+--------------------------------------------------------------------------------
+
+✓ Free consultation • No obligation • Fast response time
+
+--------------------------------------------------------------------------------
+NOTES
+--------------------------------------------------------------------------------
+- Two contact sections: one with form modal, one with direct booking/email
+- Emphasis on "no obligation" and "free consultation" to reduce friction
+- Multiple contact methods provided (Calendly, email, phone)
+- Reassurance messaging focuses on removing barriers to contact
+- CTA messaging emphasizes transformation and outcomes, not just features

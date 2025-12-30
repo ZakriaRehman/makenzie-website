@@ -1,0 +1,117 @@
+================================================================================
+MAKENZIE WEBSITE CONTENT
+SERVICES & SOLUTIONS
+================================================================================
+
+SECTION HEADER:
+Our Solutions
+
+SECTION TITLE:
+Healthcare AI & Data Solutions
+
+SECTION SUBTITLE:
+HIPAA-compliant systems and data pipelines that transform healthcare organizations
+
+--------------------------------------------------------------------------------
+SERVICE 1: HEALTHCARE AI SOLUTIONS
+--------------------------------------------------------------------------------
+
+SHORT DESCRIPTION:
+HIPAA-compliant AI systems
+
+FULL DESCRIPTION:
+Purpose-built AI systems for healthcare providers. Automate clinical documentation, support diagnosis decisions, and enhance patient care—all while maintaining strict HIPAA compliance.
+
+KEY FEATURES:
+• HIPAA-compliant infrastructure
+• Clinical documentation automation (AI scribes, chart notes)
+• Clinical decision support systems
+• Patient engagement & communication tools
+
+--------------------------------------------------------------------------------
+SERVICE 2: HEALTHCARE DATA ENGINEERING
+--------------------------------------------------------------------------------
+
+SHORT DESCRIPTION:
+HL7/FHIR-compatible data pipelines
+
+FULL DESCRIPTION:
+Build robust data infrastructure for healthcare organizations. Integrate EHRs, manage patient data securely, and enable real-time analytics for better decision-making.
+
+KEY FEATURES:
+• HL7/FHIR data integration
+• EHR system integration (Epic, Cerner, etc.)
+• Healthcare data warehousing
+• Real-time patient data processing
+
+--------------------------------------------------------------------------------
+SERVICE 3: MEDICAL PRACTICE AUTOMATION
+--------------------------------------------------------------------------------
+
+SHORT DESCRIPTION:
+Streamline healthcare operations
+
+FULL DESCRIPTION:
+Automate administrative tasks and workflows to let healthcare professionals focus on patient care. Reduce overhead and eliminate manual processes.
+
+KEY FEATURES:
+• Appointment scheduling & reminders
+• Insurance verification automation
+• Billing & claims processing
+• Patient intake automation
+
+--------------------------------------------------------------------------------
+SERVICE 4: HEALTHCARE ANALYTICS & REPORTING
+--------------------------------------------------------------------------------
+
+SHORT DESCRIPTION:
+Data-driven healthcare insights
+
+FULL DESCRIPTION:
+Transform healthcare data into actionable insights. Track outcomes, identify trends, and make evidence-based decisions to improve patient care.
+
+KEY FEATURES:
+• Population health analytics
+• Clinical outcomes tracking
+• Operational efficiency metrics
+• Predictive analytics for patient risk
+
+--------------------------------------------------------------------------------
+SERVICE 5: HEALTHCARE PRODUCT DEVELOPMENT
+--------------------------------------------------------------------------------
+
+SHORT DESCRIPTION:
+End-to-end healthcare software
+
+FULL DESCRIPTION:
+Build production-ready healthcare applications from scratch. Patient portals, provider dashboards, telehealth platforms—secure, compliant, and user-friendly.
+
+KEY FEATURES:
+• HIPAA-compliant web & mobile apps
+• Patient portal development
+• Provider dashboard & admin tools
+• Telehealth platform development
+
+--------------------------------------------------------------------------------
+SERVICE 6: CUSTOM HEALTHCARE AI
+--------------------------------------------------------------------------------
+
+SHORT DESCRIPTION:
+Specialized AI for unique challenges
+
+FULL DESCRIPTION:
+Custom AI solutions for specialized healthcare needs beyond our core offerings. From medical imaging analysis to predictive patient risk models.
+
+KEY FEATURES:
+• Medical imaging AI (radiology, pathology)
+• Predictive patient risk modeling
+• Natural language processing for medical records
+• Custom clinical algorithms
+
+--------------------------------------------------------------------------------
+NOTES
+--------------------------------------------------------------------------------
+- All services emphasize HIPAA compliance as foundational requirement
+- Services cover full spectrum: AI, data engineering, automation, analytics, product development
+- Features are concrete and specific to healthcare use cases
+- Each service includes both technical capabilities and business outcomes

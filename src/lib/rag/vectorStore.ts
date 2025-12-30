@@ -73,8 +73,10 @@ export async function upsertChunks(
   chunks: Array<{
     id: string;
     vector: number[];
-    content: string;
-    metadata?: Record<string, any>;
+    payload: {
+      content: string;
+      metadata?: Record<string, any>;
+    };
   }>
 ) {
   const client = getQdrantClient();
@@ -83,10 +85,7 @@ export async function upsertChunks(
     const points = chunks.map((chunk) => ({
       id: chunk.id,
       vector: chunk.vector,
-      payload: {
-        content: chunk.content,
-        metadata: chunk.metadata || {},
-      },
+      payload: chunk.payload,
     }));
 
     await client.upsert(COLLECTION_NAME, {

@@ -1,0 +1,83 @@
+================================================================================
+MAKENZIE WEBSITE CONTENT
+OUR PROCESS & WORKFLOW
+================================================================================
+
+SECTION HEADER:
+Our Process
+
+SECTION TITLE:
+Simple, Transparent, Effective
+
+SECTION SUBTITLE:
+From initial consultation to production deployment, we make the journey smooth and predictable
+
+--------------------------------------------------------------------------------
+STEP 1: DISCOVERY & COMPLIANCE REVIEW
+--------------------------------------------------------------------------------
+
+STEP NUMBER: 01
+
+TITLE:
+Discovery & Compliance Review
+
+DESCRIPTION:
+Free consultation to understand your clinical workflows, technical requirements, and compliance needs. We review your existing systems (EHR, practice management) and identify integration opportunities.
+
+--------------------------------------------------------------------------------
+STEP 2: PROPOSAL & SECURITY ASSESSMENT
+--------------------------------------------------------------------------------
+
+STEP NUMBER: 02
+
+TITLE:
+Proposal & Security Assessment
+
+DESCRIPTION:
+Detailed proposal with clear scope, HIPAA compliance plan, security assessment, and integration roadmap. Transparent pricing with no surprises.
+
+--------------------------------------------------------------------------------
+STEP 3: DEVELOPMENT & CLINICAL VALIDATION
+--------------------------------------------------------------------------------
+
+STEP NUMBER: 03
+
+TITLE:
+Development & Clinical Validation
+
+DESCRIPTION:
+Agile development with regular demos to your clinical and administrative staff. Iterative feedback ensures the solution fits your real-world workflows.
+
+--------------------------------------------------------------------------------
+STEP 4: DEPLOYMENT & ONGOING SUPPORT
+--------------------------------------------------------------------------------
+
+STEP NUMBER: 04
+
+TITLE:
+Deployment & Ongoing Support
+
+DESCRIPTION:
+Production launch with staff training, compliance documentation, and 24/7 support. Ongoing maintenance and updates to keep your system secure and compliant.
+
+--------------------------------------------------------------------------------
+BOTTOM CTA
+--------------------------------------------------------------------------------
+
+HEADLINE:
+Ready to transform your healthcare operations?
+
+SUBTEXT:
+Schedule a free consultation to discuss your healthcare IT needs
+
+CTA BUTTON:
+Schedule Free Consultation
+
+--------------------------------------------------------------------------------
+NOTES
+--------------------------------------------------------------------------------
+- Four-step process emphasizes transparency and predictability
+- Each step includes healthcare-specific elements (compliance review, clinical validation, etc.)
+- Free consultation removes barrier to entry
+- Ongoing support and maintenance included (not one-and-done)
+- Regular demos and iterative feedback ensure solutions fit real workflows

@@ -7,6 +7,7 @@ export interface ChatMessage {
   language?: string
   use_rag?: boolean
   stream?: boolean
+  signal?: AbortSignal
 }
 
 export async function* streamChat(request: ChatMessage): AsyncGenerator<string> {
@@ -22,6 +23,7 @@ export async function* streamChat(request: ChatMessage): AsyncGenerator<string> 
       use_rag: request.use_rag !== false,
       stream: true,
     }),
+    signal: request.signal,
   })
 
   if (!response.ok) {

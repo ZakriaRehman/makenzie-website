@@ -14,6 +14,7 @@ function ChatWidget() {
   const [showWelcome, setShowWelcome] = useState(false)
   const [welcomeText, setWelcomeText] = useState('')
   const [isWelcomeTyping, setIsWelcomeTyping] = useState(false)
+  const [abortController, setAbortController] = useState<AbortController | null>(null)
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
   const fullWelcomeMessage = `**Welcome to makenzie.co!**
@@ -38,22 +39,18 @@ How can I assist you today?`
   }, [messages, welcomeText])
 
   useEffect(() => {
-    // Show typing indicator then display welcome message
-    const typingTimer = setTimeout(() => {
-      setIsWelcomeTyping(true)
-    }, 300)
-
-    const messageTimer = setTimeout(() => {
-      setIsWelcomeTyping(false)
-      setShowWelcome(true)
-      setWelcomeText(fullWelcomeMessage) // Show complete message instantly
-    }, 1000)
-
-    return () => {
-      clearTimeout(typingTimer)
-      clearTimeout(messageTimer)
-    }
+    // Show welcome message immediately
+    setShowWelcome(true)
+    setWelcomeText(fullWelcomeMessage)
   }, [])
+
+  const handleStop = () => {
+    if (abortController) {
+      abortController.abort()
+      setAbortController(null)
+      setIsLoading(false)
+    }
+  }
 
   const handleSend = async () => {
     if (!input.trim() || isLoading) return
@@ -70,6 +67,10 @@ How can I assist you today?`
     setIsLoading(true)
     setError(null)
 
+    // Create new AbortController for this request
+    const controller = new AbortController()
+    setAbortController(controller)
+
     try {
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
@@ -85,6 +86,7 @@ How can I assist you today?`
       for await (const token of streamChat({
         message: userMessage.content,
         session_id: sessionId || undefined,
+        signal: controller.signal,
       })) {
         assistantMessage.content += token
         setMessages(prev => {
@@ -98,13 +100,22 @@ How can I assist you today?`
       if (!sessionId) {
         setSessionId(Date.now().toString())
       }
-    } catch (err) {
-      console.error('Chat error:', err)
-      setError('Failed to send message. Please try again.')
-      // Remove the empty assistant message
-      setMessages(prev => prev.slice(0, -1))
+    } catch (err: any) {
+      // Don't show error if it was aborted by user
+      const isAborted =
+        err.name === 'AbortError' ||
+        err.code === 20 ||
+        (err.message && err.message.includes('abort'));
+
+      if (!isAborted) {
+        console.error('Chat error:', err)
+        setError('Failed to send message. Please try again.')
+        // Remove the empty assistant message
+        setMessages(prev => prev.slice(0, -1))
+      }
     } finally {
       setIsLoading(false)
+      setAbortController(null)
     }
   }
 
@@ -122,10 +133,6 @@ How can I assist you today?`
       </div>
 
       <div className="chat-messages">
-        {messages.length === 0 && isWelcomeTyping && (
-          <div className="typing-indicator">Thinking...</div>
-        )}
-
         {messages.length === 0 && showWelcome && (
           <div className="message assistant">
             <ReactMarkdown>{welcomeText}</ReactMarkdown>
@@ -135,16 +142,20 @@ How can I assist you today?`
         {messages.map((msg) => (
           <div key={msg.id} className={`message ${msg.role}`}>
             {msg.role === 'assistant' ? (
-              <ReactMarkdown>{msg.content || '...'}</ReactMarkdown>
+              msg.content ? (
+                <ReactMarkdown>{msg.content}</ReactMarkdown>
+              ) : (
+                <div style={{ display: 'flex', gap: '6px' }}>
+                  <span className="typing-dot"></span>
+                  <span className="typing-dot"></span>
+                  <span className="typing-dot"></span>
+                </div>
+              )
             ) : (
               msg.content
             )}
           </div>
         ))}
-
-        {isLoading && messages[messages.length - 1]?.content === '' && (
-          <div className="typing-indicator">Thinking...</div>
-        )}
 
         <div ref={messagesEndRef} />
       </div>
@@ -177,20 +188,37 @@ How can I assist you today?`
           onKeyDown={handleKeyDown}
           disabled={isLoading}
         />
-        <button className="send-button" onClick={handleSend} disabled={isLoading || !input.trim()} aria-label="Send message">
-          <svg
-            width="22"
-            height="22"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            style={{ transform: 'rotate(45deg) translateX(-2px) translateY(2px)' }}
-          >
-            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
-          </svg>
+        <button
+          className="send-button"
+          onClick={isLoading ? handleStop : handleSend}
+          disabled={!isLoading && !input.trim()}
+          aria-label={isLoading ? "Stop generating" : "Send message"}
+        >
+          {isLoading ? (
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              stroke="none"
+            >
+              <rect x="6" y="6" width="12" height="12" rx="1" />
+            </svg>
+          ) : (
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              style={{ transform: 'rotate(45deg) translateX(-2px) translateY(2px)' }}
+            >
+              <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+            </svg>
+          )}
         </button>
       </div>
     </div>

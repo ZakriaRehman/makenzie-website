@@ -1,0 +1,62 @@
+================================================================================
+MAKENZIE WEBSITE CONTENT
+WHY CHOOSE US & VALUE PROPOSITIONS
+================================================================================
+
+SECTION HEADER:
+Why Choose Us
+
+SECTION TITLE:
+Why Healthcare Organizations Choose Makenzie
+
+SECTION SUBTITLE:
+We combine healthcare domain expertise with technical excellence to deliver solutions that transform clinical workflows
+
+--------------------------------------------------------------------------------
+VALUE PROPOSITION 1: HEALTHCARE DOMAIN EXPERTISE
+--------------------------------------------------------------------------------
+
+TITLE:
+Healthcare Domain Expertise
+
+DESCRIPTION:
+Deep understanding of healthcare workflows, regulations, and challenges. We've built solutions for hospitals, clinics, and health tech companies—we speak your language and understand HIPAA, HL7/FHIR, and clinical operations.
+
+--------------------------------------------------------------------------------
+VALUE PROPOSITION 2: ENTERPRISE-GRADE SECURITY & COMPLIANCE
+--------------------------------------------------------------------------------
+
+TITLE:
+Enterprise-Grade Security & Compliance
+
+DESCRIPTION:
+HIPAA-compliant infrastructure from day one. Every solution we build meets healthcare security standards, includes audit trails, encryption, and follows best practices for patient data protection.
+
+--------------------------------------------------------------------------------
+VALUE PROPOSITION 3: PROVEN HEALTHCARE RESULTS
+--------------------------------------------------------------------------------
+
+TITLE:
+Proven Healthcare Results
+
+DESCRIPTION:
+Measurable impact on clinical efficiency and patient outcomes. Our clients report reduced documentation time, improved patient satisfaction, and streamlined operations within months of deployment.
+
+--------------------------------------------------------------------------------
+VALUE PROPOSITION 4: FULL-LIFECYCLE PARTNERSHIP
+--------------------------------------------------------------------------------
+
+TITLE:
+Full-Lifecycle Partnership
+
+DESCRIPTION:
+From compliance review to clinical validation to ongoing support. We understand healthcare IT procurement and work seamlessly with your existing systems and workflows.
+
+--------------------------------------------------------------------------------
+NOTES
+--------------------------------------------------------------------------------
+- Four core differentiators focused on healthcare expertise
+- Emphasis on understanding healthcare-specific challenges (HIPAA, HL7/FHIR, clinical ops)
+- Concrete outcomes: reduced documentation time, improved satisfaction, streamlined operations
+- Positioning as a long-term partner, not just a vendor
+- Security and compliance as foundational, not an afterthought

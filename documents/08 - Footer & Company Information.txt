@@ -1,0 +1,65 @@
+================================================================================
+MAKENZIE WEBSITE CONTENT
+FOOTER & COMPANY INFORMATION
+================================================================================
+
+--------------------------------------------------------------------------------
+COMPANY OVERVIEW
+--------------------------------------------------------------------------------
+
+COMPANY NAME:
+Makenzie
+
+TAGLINE/DESCRIPTION:
+Healthcare AI & Data Engineering Solutions. We build HIPAA-compliant systems that improve clinical workflows and patient outcomes.
+
+--------------------------------------------------------------------------------
+CONTACT INFORMATION
+--------------------------------------------------------------------------------
+
+ADDRESS:
+NASTP Delta, Lahore Cantt, Pakistan
+
+PHONE:
++92 316 0557117
+
+EMAIL:
+info@makenzie.co
+
+--------------------------------------------------------------------------------
+SOCIAL MEDIA LINKS
+--------------------------------------------------------------------------------
+
+LINKEDIN:
+https://www.linkedin.com/company/mcanzie/
+
+X (TWITTER):
+https://x.com/Makenzie33638
+
+--------------------------------------------------------------------------------
+QUICK LINKS (NAVIGATION)
+--------------------------------------------------------------------------------
+
+• Our Services (#services)
+• Contact Us (#contact)
+• Privacy Policy (/privacy)
+• Terms of Service (/terms)
+
+--------------------------------------------------------------------------------
+LEGAL & COPYRIGHT
+--------------------------------------------------------------------------------
+
+COPYRIGHT NOTICE:
+© 2025 Makenzie. All rights reserved.
+
+LEGAL LINKS:
+Privacy Policy | Terms of Use
+
+--------------------------------------------------------------------------------
+NOTES
+--------------------------------------------------------------------------------
+- Footer reinforces HIPAA compliance and healthcare focus
+- Social media presence on LinkedIn (professional) and X (broader reach)
+- Located in Pakistan (NASTP Delta, Lahore Cantt)
+- All standard legal pages linked (Privacy, Terms)
+- Clean, professional footer design with gradient accent line

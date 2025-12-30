@@ -1,0 +1,45 @@
+================================================================================
+MAKENZIE WEBSITE CONTENT
+HERO SECTION & MAIN VALUE PROPOSITION
+================================================================================
+
+--------------------------------------------------------------------------------
+HERO SECTION
+--------------------------------------------------------------------------------
+
+BADGE/TAGLINE:
+Healthcare AI & Data Engineering Specialists
+
+MAIN HEADLINE:
+Transform Healthcare with AI Solutions That Actually Work
+
+SUBTITLE/DESCRIPTION:
+HIPAA-compliant AI systems and data pipelines built specifically for healthcare organizations. From clinical workflows to patient engagement, we deliver solutions that improve outcomes.
+
+CALL-TO-ACTION BUTTONS:
+1. Get Started (Primary CTA)
+2. View Services (Secondary CTA)
+
+--------------------------------------------------------------------------------
+KEY STATISTICS
+--------------------------------------------------------------------------------
+
+100% HIPAA Compliant
+24/7 Healthcare Support
+40% Faster Documentation
+
+--------------------------------------------------------------------------------
+KEY FEATURES/TRUST INDICATORS
+--------------------------------------------------------------------------------
+
+✓ HIPAA Compliant
+✓ Production-Ready
+✓ Healthcare Domain Expertise
+
+--------------------------------------------------------------------------------
+NOTES
+--------------------------------------------------------------------------------
+- Hero section emphasizes HIPAA compliance as primary differentiator
+- Focus on "solutions that actually work" - practical, results-oriented messaging
+- Stats provide concrete, measurable benefits (24/7 support, 40% faster)
+- Clean, professional tone targeting healthcare decision-makers
