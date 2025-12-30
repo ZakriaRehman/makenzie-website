@@ -38,7 +38,7 @@ How can I assist you today?`
   }, [messages, welcomeText])
 
   useEffect(() => {
-    // Show typing indicator and stream welcome message
+    // Show typing indicator then display welcome message
     const typingTimer = setTimeout(() => {
       setIsWelcomeTyping(true)
     }, 300)
@@ -46,19 +46,7 @@ How can I assist you today?`
     const messageTimer = setTimeout(() => {
       setIsWelcomeTyping(false)
       setShowWelcome(true)
-
-      // Stream the welcome message character by character
-      let currentIndex = 0
-      const streamInterval = setInterval(() => {
-        if (currentIndex <= fullWelcomeMessage.length) {
-          setWelcomeText(fullWelcomeMessage.slice(0, currentIndex))
-          currentIndex++
-        } else {
-          clearInterval(streamInterval)
-        }
-      }, 15) // Speed of typing: 15ms per character
-
-      return () => clearInterval(streamInterval)
+      setWelcomeText(fullWelcomeMessage) // Show complete message instantly
     }, 1000)
 
     return () => {
@@ -120,7 +108,7 @@ How can I assist you today?`
     }
   }
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault()
       handleSend()
@@ -186,7 +174,7 @@ How can I assist you today?`
           placeholder="Type your message..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          onKeyPress={handleKeyPress}
+          onKeyDown={handleKeyDown}
           disabled={isLoading}
         />
         <button className="send-button" onClick={handleSend} disabled={isLoading || !input.trim()} aria-label="Send message">

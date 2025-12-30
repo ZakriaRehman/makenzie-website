@@ -1,4 +1,5 @@
-const API_URL = process.env.NEXT_PUBLIC_CHAT_API_URL || 'http://localhost:8000'
+// Use Next.js API route instead of external backend
+const API_URL = '/api'
 
 export interface ChatMessage {
   message: string
@@ -50,7 +51,11 @@ export async function* streamChat(request: ChatMessage): AsyncGenerator<string> 
               const parsed = JSON.parse(data)
 
               // Extract content from token events
-              if (parsed.content) {
+              if (parsed.type === 'token' && parsed.content) {
+                yield parsed.content
+              }
+              // Also support legacy format
+              else if (parsed.content && !parsed.type) {
                 yield parsed.content
               }
             } catch (e) {
