@@ -228,8 +228,19 @@
   align-items: flex-end;
 }
 
-.copy-button {
+.message-actions {
+  display: flex;
+  gap: 6px;
   align-self: flex-start;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.message-content-wrapper:hover .message-actions {
+  opacity: 1;
+}
+
+.action-button {
   padding: 6px 8px;
   background: transparent;
   border: 1px solid #e2e8f0;
@@ -237,24 +248,19 @@
   cursor: pointer;
   color: #64748b;
   transition: all 0.2s;
-  opacity: 0;
   font-size: 12px;
   display: flex;
   align-items: center;
   gap: 4px;
 }
 
-.message-content-wrapper:hover .copy-button {
-  opacity: 1;
-}
-
-.copy-button:hover {
+.action-button:hover {
   background: #f1f5f9;
   border-color: #cbd5e0;
   color: #3eb5aa;
 }
 
-.copy-button:active {
+.action-button:active {
   transform: scale(0.95);
 }
 
@@ -474,6 +480,27 @@
 .microphone-button:hover {
   color: #3eb5aa;
   border-color: #3eb5aa;
+}
+
+.microphone-button.listening {
+  background: #ef4444;
+  color: #ffffff;
+  border-color: #ef4444;
+  animation: pulse-red 1.5s infinite;
+}
+
+@keyframes pulse-red {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+  }
+}
+
+.microphone-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .chat-input input {

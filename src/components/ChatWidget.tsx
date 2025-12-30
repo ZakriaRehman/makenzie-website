@@ -17,7 +17,10 @@ function ChatWidget() {
   const [abortController, setAbortController] = useState<AbortController | null>(null)
   const [showQuickQuestions, setShowQuickQuestions] = useState(true)
   const [copiedId, setCopiedId] = useState<string | null>(null)
+  const [isListening, setIsListening] = useState(false)
+  const [isSpeaking, setIsSpeaking] = useState<string | null>(null)
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const recognitionRef = useRef<any>(null)
 
   const quickQuestions = [
     {
@@ -86,6 +89,82 @@ How can I assist you today?`
     } catch (err) {
       console.error('Failed to copy:', err)
     }
+  }
+
+  const startListening = () => {
+    if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+      setError('Speech recognition is not supported in your browser')
+      return
+    }
+
+    const SpeechRecognition = (window as any).webkitSpeechRecognition || (window as any).SpeechRecognition
+    const recognition = new SpeechRecognition()
+
+    recognition.continuous = false
+    recognition.interimResults = false
+    recognition.lang = 'en-US'
+
+    recognition.onstart = () => {
+      setIsListening(true)
+      setError(null)
+    }
+
+    recognition.onresult = (event: any) => {
+      const transcript = event.results[0][0].transcript
+      setInput(transcript)
+      setIsListening(false)
+    }
+
+    recognition.onerror = (event: any) => {
+      console.error('Speech recognition error:', event.error)
+      setIsListening(false)
+      if (event.error !== 'aborted') {
+        setError('Could not recognize speech. Please try again.')
+      }
+    }
+
+    recognition.onend = () => {
+      setIsListening(false)
+    }
+
+    recognitionRef.current = recognition
+    recognition.start()
+  }
+
+  const stopListening = () => {
+    if (recognitionRef.current) {
+      recognitionRef.current.stop()
+      setIsListening(false)
+    }
+  }
+
+  const handleSpeak = (text: string, id: string) => {
+    if (isSpeaking === id) {
+      window.speechSynthesis.cancel()
+      setIsSpeaking(null)
+      return
+    }
+
+    window.speechSynthesis.cancel()
+
+    const utterance = new SpeechSynthesisUtterance(text)
+    utterance.rate = 0.9
+    utterance.pitch = 1
+    utterance.volume = 1
+
+    utterance.onstart = () => {
+      setIsSpeaking(id)
+    }
+
+    utterance.onend = () => {
+      setIsSpeaking(null)
+    }
+
+    utterance.onerror = () => {
+      setIsSpeaking(null)
+    }
+
+    window.speechSynthesis.speak(utterance)
   }
 
   const handleSend = async (customMessage?: string) => {
@@ -198,23 +277,45 @@ How can I assist you today?`
                 )}
               </div>
               {msg.role === 'assistant' && msg.content && (
-                <button
-                  className="copy-button"
-                  onClick={() => handleCopy(msg.content, msg.id)}
-                  aria-label="Copy message"
-                  title={copiedId === msg.id ? "Copied!" : "Copy"}
-                >
-                  {copiedId === msg.id ? (
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                      <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                  ) : (
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                    </svg>
-                  )}
-                </button>
+                <div className="message-actions">
+                  <button
+                    className="action-button"
+                    onClick={() => handleSpeak(msg.content, msg.id)}
+                    aria-label={isSpeaking === msg.id ? "Stop speaking" : "Read aloud"}
+                    title={isSpeaking === msg.id ? "Stop speaking" : "Read aloud"}
+                  >
+                    {isSpeaking === msg.id ? (
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                        <line x1="23" y1="9" x2="17" y2="15"></line>
+                        <line x1="17" y1="9" x2="23" y2="15"></line>
+                      </svg>
+                    ) : (
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                      </svg>
+                    )}
+                  </button>
+                  <button
+                    className="action-button"
+                    onClick={() => handleCopy(msg.content, msg.id)}
+                    aria-label="Copy message"
+                    title={copiedId === msg.id ? "Copied!" : "Copy"}
+                  >
+                    {copiedId === msg.id ? (
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    ) : (
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                      </svg>
+                    )}
+                  </button>
+                </div>
               )}
             </div>
           </div>
@@ -242,22 +343,39 @@ How can I assist you today?`
       )}
 
       <div className="chat-input">
-        <button className="microphone-button" aria-label="Voice input">
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
-            <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
-            <line x1="12" y1="19" x2="12" y2="23" />
-            <line x1="8" y1="23" x2="16" y2="23" />
-          </svg>
+        <button
+          className={`microphone-button ${isListening ? 'listening' : ''}`}
+          onClick={isListening ? stopListening : startListening}
+          disabled={isLoading}
+          aria-label={isListening ? "Stop listening" : "Voice input"}
+          title={isListening ? "Stop listening" : "Click to speak"}
+        >
+          {isListening ? (
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <rect x="6" y="6" width="12" height="12" rx="2" />
+            </svg>
+          ) : (
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+              <line x1="12" y1="19" x2="12" y2="23" />
+              <line x1="8" y1="23" x2="16" y2="23" />
+            </svg>
+          )}
         </button>
         <input
           type="text"
