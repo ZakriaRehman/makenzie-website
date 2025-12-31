@@ -12,7 +12,7 @@ const openai = new OpenAI({
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { message, session_id, use_rag = true } = body;
+    const { message, session_id, language = 'en', use_rag = true } = body;
 
     if (!message) {
       return new Response(
@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
         console.log(`📚 Found ${ragContext.results.length} relevant documents`);
 
         if (ragContext.context) {
-          prompt = buildRAGPrompt(message, ragContext.context);
+          prompt = buildRAGPrompt(message, ragContext.context, language);
           sources = ragContext.results.map((r) => ({
             id: r.id,
             score: r.score,
@@ -40,11 +40,15 @@ export async function POST(req: NextRequest) {
           console.log('✅ RAG context applied to prompt');
         } else {
           console.log('⚠️ No RAG context found, using standard prompt');
+          prompt = buildRAGPrompt(message, '', language);
         }
       } catch (error) {
         console.error('❌ RAG retrieval error:', error);
         // Continue without RAG if it fails
+        prompt = buildRAGPrompt(message, '', language);
       }
+    } else {
+      prompt = buildRAGPrompt(message, '', language);
     }
 
     // Create streaming chat completion
