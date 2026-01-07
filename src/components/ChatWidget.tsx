@@ -604,17 +604,103 @@ function ChatWidget({ onClose, language: propLanguage = 'en' }: ChatWidgetProps 
     }
   }
 
+  // Helper function to normalize text for matching (remove punctuation, lowercase)
+  const normalizeText = (text: string): string => {
+    return text.toLowerCase().trim().replace(/[?.,!;:]/g, '')
+  }
+
   const handleSend = async (customMessage?: string) => {
     const messageToSend = customMessage || input.trim()
     if (!messageToSend || isLoading) return
 
-    // Check for hardcoded demo questions first (exact match only)
-    const normalizedInput = messageToSend.toLowerCase().trim()
+    // Normalize input for matching (case-insensitive, ignore punctuation)
+    const normalizedInput = normalizeText(messageToSend)
+
+    // Check for hardcoded FAQ questions first
+    const faqQuestions = quickQuestions || []
+    const matchedFAQIndex = faqQuestions.findIndex((q: any) => {
+      const normalizedQuestion = normalizeText(q.text)
+      // Check if normalized question matches normalized input
+      if (normalizedQuestion === normalizedInput) return true
+      // Also check variations if they exist
+      if (q.variations) {
+        return q.variations.some((v: string) => normalizeText(v) === normalizedInput)
+      }
+      return false
+    })
+
+    // If we found an FAQ match, handle it with streaming effect
+    if (matchedFAQIndex !== -1) {
+      const matchedFAQ = faqQuestions[matchedFAQIndex]
+
+      const userMessage: Message = {
+        id: `user-${Date.now()}`,
+        role: 'user',
+        content: messageToSend,
+        timestamp: new Date()
+      }
+
+      const assistantMessage: Message = {
+        id: `assistant-${Date.now()}`,
+        role: 'assistant',
+        content: '',
+        timestamp: new Date(),
+        isHTML: true,
+        audioPath: `/audio/${language}-faq-${matchedFAQIndex}.mp3`
+      }
+
+      setMessages(prev => [...prev, userMessage, assistantMessage])
+      setInput('')
+
+      // Convert markdown to HTML and tokenize for smooth streaming
+      const htmlAnswer = markdownToHTML(matchedFAQ.answer)
+      const tokens = tokenizeHTML(htmlAnswer)
+
+      const streamAnswer = async () => {
+        // Brief delay to show typing indicator
+        await new Promise(resolve => setTimeout(resolve, 300))
+
+        for (const token of tokens) {
+          if (token.type === 'tag') {
+            // Add tags instantly (no delay)
+            assistantMessage.content += token.content
+            setMessages(prev => {
+              const newMessages = [...prev]
+              newMessages[newMessages.length - 1] = { ...assistantMessage }
+              return newMessages
+            })
+          } else {
+            // Stream text character by character
+            for (const char of token.content) {
+              assistantMessage.content += char
+              setMessages(prev => {
+                const newMessages = [...prev]
+                newMessages[newMessages.length - 1] = { ...assistantMessage }
+                return newMessages
+              })
+              await new Promise(resolve => setTimeout(resolve, 15))
+            }
+          }
+        }
+      }
+
+      streamAnswer()
+
+      return
+    }
+
+    // Check for hardcoded demo questions
     const demoQuestions = t.demoQuestions || []
 
     const matchedDemoIndex = demoQuestions.findIndex((q: any) => {
-      // Only exact match with question text
-      return q.text.toLowerCase() === normalizedInput
+      const normalizedQuestion = normalizeText(q.text)
+      // Check if normalized question matches normalized input
+      if (normalizedQuestion === normalizedInput) return true
+      // Also check variations if they exist
+      if (q.variations) {
+        return q.variations.some((v: string) => normalizeText(v) === normalizedInput)
+      }
+      return false
     })
 
     // If we found a demo question match, handle it with streaming effect
