@@ -17,10 +17,6 @@ const translations = {
       'We are located at NASTP Delta, Lahore Cantt, Pakistan. We serve healthcare clients globally with HIPAA-compliant solutions.'
     ],
     demo: [
-      'We offer the following services:\n\nHealthcare AI Solutions\nHealthcare Data Engineering\nMedical Practice Automation\nHealthcare Analytics & Reporting\nHealthcare Product Development\nCustom Healthcare AI\n\nAll our services are HIPAA-compliant and designed to improve clinical workflows and patient outcomes.',
-      'Yes, absolutely. All our solutions are HIPAA-compliant with end-to-end encryption, secure data handling, and regular compliance audits. Our team has extensive experience with healthcare regulations to keep your data protected.',
-      'We offer three flexible models:\n\nSoftware Development Outsourcing - for complete solutions\nDedicated Healthcare Teams - for long-term integrated support\nStaff Augmentation - for rapid scaling\n\nAll pricing is customized to your specific needs and budget.',
-      'Yes! We serve healthcare clients worldwide. We work across all time zones, have experience with international healthcare standards and regulations specializing in US Healthcare, and provide HIPAA-compliant solutions regardless of your location.',
       'We usually start with a short discovery conversation. The goal is to understand your current workflows, challenges, and what you\'re trying to improve, whether that\'s customer communication, internal efficiency, or data flow. From there, we outline a practical approach tailored to your needs, rather than offering a one-size-fits-all solution.',
       'The first conversation is focused on listening. We discuss your pain points, existing systems, constraints, and priorities. This helps us identify where technology can actually add value and where it shouldn\'t. By the end of the call, both sides have clarity on whether there\'s a strong fit and what the next steps could look like.'
     ]
@@ -33,10 +29,6 @@ const translations = {
       'Estamos ubicados en NASTP Delta, Lahore Cantt, Pakistán. Servimos a clientes del sector salud a nivel mundial con soluciones que cumplen con HIPAA.'
     ],
     demo: [
-      'Ofrecemos los siguientes servicios:\n\nSoluciones de IA para la Salud\nIngeniería de Datos de Salud\nAutomatización de Práctica Médica\nAnálisis e Informes de Salud\nDesarrollo de Productos de Salud\nIA Personalizada para la Salud\n\nTodos nuestros servicios cumplen con HIPAA y están diseñados para mejorar los flujos de trabajo clínicos y los resultados de los pacientes.',
-      'Sí, absolutamente. Todas nuestras soluciones cumplen con HIPAA con cifrado de extremo a extremo, manejo seguro de datos y auditorías de cumplimiento regulares. Nuestro equipo tiene amplia experiencia con regulaciones de salud para mantener sus datos protegidos.',
-      'Ofrecemos tres modelos flexibles:\n\nOutsourcing de Desarrollo de Software - para soluciones completas\nEquipos Dedicados de Salud - para soporte integrado a largo plazo\nAmpliación de Personal - para escalado rápido\n\nTodos los precios se personalizan según sus necesidades específicas y presupuesto.',
-      'Sí! Servimos a clientes del sector salud en todo el mundo. Trabajamos en todas las zonas horarias, tenemos experiencia con estándares y regulaciones de salud internacionales especializándonos en Salud de EE. UU. y proporcionamos soluciones compatibles con HIPAA independientemente de su ubicación.',
       'Normalmente comenzamos con una breve conversación de descubrimiento. El objetivo es comprender sus flujos de trabajo actuales, desafíos y qué está tratando de mejorar, ya sea comunicación con el cliente, eficiencia interna o flujo de datos. A partir de ahí, esbozamos un enfoque práctico adaptado a sus necesidades, en lugar de ofrecer una solución única para todos.',
       'La primera conversación se centra en escuchar. Discutimos sus puntos débiles, sistemas existentes, limitaciones y prioridades. Esto nos ayuda a identificar dónde la tecnología puede realmente agregar valor y dónde no debería. Al final de la llamada, ambas partes tienen claridad sobre si hay un buen ajuste y cuáles podrían ser los próximos pasos.'
     ]
@@ -49,10 +41,6 @@ const translations = {
       'Nous sommes situés à NASTP Delta, Lahore Cantt, Pakistan. Nous servons des clients du secteur de la santé dans le monde entier avec des solutions conformes HIPAA.'
     ],
     demo: [
-      'Nous proposons les services suivants :\n\nSolutions IA pour la Santé\nIngénierie de Données de Santé\nAutomatisation de Pratique Médicale\nAnalyses et Rapports de Santé\nDéveloppement de Produits de Santé\nIA Personnalisée en Santé\n\nTous nos services sont conformes HIPAA et conçus pour améliorer les flux de travail cliniques et les résultats des patients.',
-      'Oui, absolument. Toutes nos solutions sont conformes HIPAA avec chiffrement de bout en bout, gestion sécurisée des données et audits de conformité réguliers. Notre équipe a une vaste expérience des réglementations de santé pour protéger vos données.',
-      'Nous proposons trois modèles flexibles :\n\nExternalisation du Développement Logiciel - pour des solutions complètes\nÉquipes Dédiées de Santé - pour un support intégré à long terme\nAugmentation du Personnel - pour une mise à l\'échelle rapide\n\nTous les prix sont personnalisés selon vos besoins et votre budget.',
-      'Oui ! Nous servons des clients du secteur de la santé dans le monde entier. Nous travaillons dans tous les fuseaux horaires, avons de l\'expérience avec les normes et réglementations de santé internationales spécialisés dans la Santé aux États-Unis, et fournissons des solutions conformes HIPAA quel que soit votre emplacement.',
       'Nous commençons généralement par une courte conversation de découverte. L\'objectif est de comprendre vos flux de travail actuels, vos défis et ce que vous essayez d\'améliorer, qu\'il s\'agisse de communication client, d\'efficacité interne ou de flux de données. À partir de là, nous décrivons une approche pratique adaptée à vos besoins, plutôt que d\'offrir une solution universelle.',
       'La première conversation se concentre sur l\'écoute. Nous discutons de vos points de douleur, de vos systèmes existants, de vos contraintes et de vos priorités. Cela nous aide à identifier où la technologie peut réellement apporter de la valeur et où elle ne le devrait pas. À la fin de l\'appel, les deux parties ont une clarté sur l\'adéquation et sur les prochaines étapes possibles.'
     ]
