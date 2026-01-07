@@ -123,26 +123,6 @@ function ChatWidget({ onClose, language: propLanguage = 'en' }: ChatWidgetProps 
       ],
       demoQuestions: [
         {
-          text: 'What services do you offer?',
-          variations: ['what services', 'your services', 'services you offer', 'what do you offer'],
-          answer: 'We offer the following services:\n\n- **Healthcare AI Solutions**\n- **Healthcare Data Engineering**\n- **Medical Practice Automation**\n- **Healthcare Analytics & Reporting**\n- **Healthcare Product Development**\n- **Custom Healthcare AI**\n\nAll our services are **HIPAA-compliant** and designed to improve clinical workflows and patient outcomes.'
-        },
-        {
-          text: 'Are you HIPAA compliant?',
-          variations: ['hipaa compliant', 'hipaa compliance', 'are you hipaa', 'hipaa'],
-          answer: 'Yes, absolutely. All our solutions are **HIPAA-compliant** with **end-to-end encryption**, **secure data handling**, and **regular compliance audits**. Our team has extensive experience with healthcare regulations to keep your data protected.'
-        },
-        {
-          text: 'What are your pricing and engagement models?',
-          variations: ['pricing', 'engagement models', 'pricing models', 'cost', 'how much'],
-          answer: 'We offer three flexible models:\n\n- **Software Development Outsourcing** - for complete solutions\n- **Dedicated Healthcare Teams** - for long-term integrated support\n- **Staff Augmentation** - for rapid scaling\n\nAll pricing is **customized** to your specific needs and budget.'
-        },
-        {
-          text: 'Do you work with clients globally?',
-          variations: ['work globally', 'global clients', 'international clients', 'worldwide'],
-          answer: 'Yes! We serve healthcare clients **worldwide**. We work across all time zones, have experience with international healthcare standards and regulations specializing in **US Healthcare**, and provide **HIPAA-compliant solutions** regardless of your location.'
-        },
-        {
           text: 'How do you get started with a new client?',
           variations: ['get started', 'onboarding', 'start working', 'new client process'],
           answer: 'We usually start with a short **discovery conversation**. The goal is to understand your current workflows, challenges, and what you\'re trying to improve, whether that\'s customer communication, internal efficiency, or data flow. From there, we outline a practical approach **tailored to your needs**, rather than offering a one-size-fits-all solution.'
@@ -150,7 +130,7 @@ function ChatWidget({ onClose, language: propLanguage = 'en' }: ChatWidgetProps 
         {
           text: 'What does the first conversation focus on?',
           variations: ['first conversation', 'initial discussion', 'first meeting', 'discovery call'],
-          answer: 'The first conversation is focused on **listening**. We discuss your pain points, existing systems, constraints, and priorities. This helps us identify where technology can actually add value and where it shouldn\'t. By the end of the call, both sides have **clarity on whether there\'s a strong fit** and what the next steps could look like.'
+          answer: 'The first conversation is focused on listening. We discuss your **pain points**, **existing systems**, **constraints**, and **priorities**. This helps us identify where technology can actually add value and where it shouldn\'t. By the end of the call, both sides have **clarity on whether there\'s a strong fit** and what the next steps could look like.'
         }
       ]
     },
@@ -180,26 +160,6 @@ function ChatWidget({ onClose, language: propLanguage = 'en' }: ChatWidgetProps 
       ],
       demoQuestions: [
         {
-          text: '¿Qué servicios ofrecen?',
-          variations: ['que servicios', 'sus servicios', 'servicios que ofrecen', 'que ofrecen'],
-          answer: 'Ofrecemos los siguientes servicios:\n\n- **Soluciones de IA para la Salud**\n- **Ingeniería de Datos de Salud**\n- **Automatización de Práctica Médica**\n- **Análisis e Informes de Salud**\n- **Desarrollo de Productos de Salud**\n- **IA Personalizada para la Salud**\n\nTodos nuestros servicios cumplen con **HIPAA** y están diseñados para mejorar los flujos de trabajo clínicos y los resultados de los pacientes.'
-        },
-        {
-          text: '¿Cumplen con HIPAA?',
-          variations: ['hipaa', 'cumplimiento hipaa', 'cumplen hipaa', 'compatibles hipaa'],
-          answer: 'Sí, absolutamente. Todas nuestras soluciones cumplen con **HIPAA** con **cifrado de extremo a extremo**, **manejo seguro de datos** y **auditorías de cumplimiento regulares**. Nuestro equipo tiene amplia experiencia con regulaciones de salud para mantener sus datos protegidos.'
-        },
-        {
-          text: '¿Cuáles son sus modelos de precios y compromiso?',
-          variations: ['precios', 'modelos de compromiso', 'modelos de precios', 'costo', 'cuanto cuesta'],
-          answer: 'Ofrecemos tres modelos flexibles:\n\n- **Outsourcing de Desarrollo de Software** - para soluciones completas\n- **Equipos Dedicados de Salud** - para soporte integrado a largo plazo\n- **Ampliación de Personal** - para escalado rápido\n\nTodos los precios se **personalizan** según sus necesidades específicas y presupuesto.'
-        },
-        {
-          text: '¿Trabajan con clientes a nivel mundial?',
-          variations: ['trabajo mundial', 'clientes globales', 'clientes internacionales', 'mundial'],
-          answer: '¡Sí! Servimos a clientes del sector salud **en todo el mundo**. Trabajamos en todas las zonas horarias, tenemos experiencia con estándares y regulaciones de salud internacionales especializándonos en **Salud de EE. UU.** y proporcionamos **soluciones compatibles con HIPAA** independientemente de su ubicación.'
-        },
-        {
           text: '¿Cómo empiezan con un nuevo cliente?',
           variations: ['empezar', 'incorporación', 'comenzar a trabajar', 'proceso nuevo cliente'],
           answer: 'Normalmente comenzamos con una breve **conversación de descubrimiento**. El objetivo es comprender sus flujos de trabajo actuales, desafíos y qué está tratando de mejorar, ya sea comunicación con el cliente, eficiencia interna o flujo de datos. A partir de ahí, esbozamos un enfoque práctico **adaptado a sus necesidades**, en lugar de ofrecer una solución única para todos.'
@@ -207,7 +167,7 @@ function ChatWidget({ onClose, language: propLanguage = 'en' }: ChatWidgetProps 
         {
           text: '¿En qué se enfoca la primera conversación?',
           variations: ['primera conversación', 'discusión inicial', 'primera reunión', 'llamada de descubrimiento'],
-          answer: 'La primera conversación se centra en **escuchar**. Discutimos sus puntos débiles, sistemas existentes, limitaciones y prioridades. Esto nos ayuda a identificar dónde la tecnología puede realmente agregar valor y dónde no debería. Al final de la llamada, ambas partes tienen **claridad sobre si hay un buen ajuste** y cuáles podrían ser los próximos pasos.'
+          answer: 'La primera conversación se centra en escuchar. Discutimos sus **puntos débiles**, **sistemas existentes**, **limitaciones** y **prioridades**. Esto nos ayuda a identificar dónde la tecnología puede realmente agregar valor y dónde no debería. Al final de la llamada, ambas partes tienen **claridad sobre si hay un buen ajuste** y cuáles podrían ser los próximos pasos.'
         }
       ]
     },
@@ -237,26 +197,6 @@ function ChatWidget({ onClose, language: propLanguage = 'en' }: ChatWidgetProps 
       ],
       demoQuestions: [
         {
-          text: 'Quels services proposez-vous ?',
-          variations: ['quels services', 'vos services', 'services que vous proposez', 'que proposez-vous'],
-          answer: 'Nous proposons les services suivants :\n\n- **Solutions IA pour la Santé**\n- **Ingénierie de Données de Santé**\n- **Automatisation de Pratique Médicale**\n- **Analyses et Rapports de Santé**\n- **Développement de Produits de Santé**\n- **IA Personnalisée en Santé**\n\nTous nos services sont conformes **HIPAA** et conçus pour améliorer les flux de travail cliniques et les résultats des patients.'
-        },
-        {
-          text: 'Êtes-vous conforme HIPAA ?',
-          variations: ['hipaa', 'conformité hipaa', 'conforme hipaa', 'compatible hipaa'],
-          answer: 'Oui, absolument. Toutes nos solutions sont **conformes HIPAA** avec **chiffrement de bout en bout**, **gestion sécurisée des données** et **audits de conformité réguliers**. Notre équipe a une vaste expérience des réglementations de santé pour protéger vos données.'
-        },
-        {
-          text: 'Quels sont vos modèles de tarification et d\'engagement ?',
-          variations: ['tarification', 'modèles d\'engagement', 'modèles de prix', 'coût', 'combien'],
-          answer: 'Nous proposons trois modèles flexibles :\n\n- **Externalisation du Développement Logiciel** - pour des solutions complètes\n- **Équipes Dédiées de Santé** - pour un support intégré à long terme\n- **Augmentation du Personnel** - pour une mise à l\'échelle rapide\n\nTous les prix sont **personnalisés** selon vos besoins et votre budget.'
-        },
-        {
-          text: 'Travaillez-vous avec des clients dans le monde entier ?',
-          variations: ['travail mondial', 'clients mondiaux', 'clients internationaux', 'monde entier'],
-          answer: 'Oui ! Nous servons des clients du secteur de la santé **dans le monde entier**. Nous travaillons dans tous les fuseaux horaires, avons de l\'expérience avec les normes et réglementations de santé internationales spécialisés dans **la Santé aux États-Unis**, et fournissons des **solutions conformes HIPAA** quel que soit votre emplacement.'
-        },
-        {
           text: 'Comment commencez-vous avec un nouveau client ?',
           variations: ['commencer', 'intégration', 'débuter', 'processus nouveau client'],
           answer: 'Nous commençons généralement par une courte **conversation de découverte**. L\'objectif est de comprendre vos flux de travail actuels, vos défis et ce que vous essayez d\'améliorer, qu\'il s\'agisse de communication client, d\'efficacité interne ou de flux de données. À partir de là, nous décrivons une approche pratique **adaptée à vos besoins**, plutôt que d\'offrir une solution universelle.'
@@ -264,7 +204,7 @@ function ChatWidget({ onClose, language: propLanguage = 'en' }: ChatWidgetProps 
         {
           text: 'Sur quoi se concentre la première conversation ?',
           variations: ['première conversation', 'discussion initiale', 'première réunion', 'appel découverte'],
-          answer: 'La première conversation se concentre sur **l\'écoute**. Nous discutons de vos points de douleur, de vos systèmes existants, de vos contraintes et de vos priorités. Cela nous aide à identifier où la technologie peut réellement apporter de la valeur et où elle ne le devrait pas. À la fin de l\'appel, les deux parties ont **une clarté sur l\'adéquation** et sur les prochaines étapes possibles.'
+          answer: 'La première conversation se concentre sur l\'écoute. Nous discutons de vos **points de douleur**, de vos **systèmes existants**, de vos **contraintes** et de vos **priorités**. Cela nous aide à identifier où la technologie peut réellement apporter de la valeur et où elle ne le devrait pas. À la fin de l\'appel, les deux parties ont **une clarté sur l\'adéquation** et sur les prochaines étapes possibles.'
         }
       ]
     }
