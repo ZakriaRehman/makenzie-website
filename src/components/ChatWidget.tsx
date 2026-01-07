@@ -852,7 +852,7 @@ function ChatWidget({ onClose, language: propLanguage = 'en' }: ChatWidgetProps 
                     className="action-button"
                     onClick={() => handleSpeak(msg.isHTML ? stripHTML(msg.content) : msg.content, msg.id)}
                     aria-label={isSpeaking === msg.id ? "Stop speaking" : "Read aloud"}
-                    title={isSpeaking === msg.id ? "Stop speaking" : "Read aloud"}
+                    data-tooltip={isSpeaking === msg.id ? "Stop" : "Listen"}
                   >
                     {isSpeaking === msg.id ? (
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -872,7 +872,7 @@ function ChatWidget({ onClose, language: propLanguage = 'en' }: ChatWidgetProps 
                     className="action-button"
                     onClick={() => handleCopy(msg.isHTML ? stripHTML(msg.content) : msg.content, msg.id)}
                     aria-label="Copy message"
-                    title={copiedId === msg.id ? "Copied!" : "Copy"}
+                    data-tooltip={copiedId === msg.id ? "Copied!" : "Copy"}
                   >
                     {copiedId === msg.id ? (
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
