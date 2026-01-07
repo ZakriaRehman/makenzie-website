@@ -50,6 +50,14 @@ function tokenizeHTML(html: string): Array<{ type: 'tag' | 'text', content: stri
   return tokens
 }
 
+// Helper function to strip HTML tags and get plain text for TTS and copy
+function stripHTML(html: string): string {
+  if (typeof document === 'undefined') return html
+  const temp = document.createElement('div')
+  temp.innerHTML = html
+  return temp.textContent || temp.innerText || ''
+}
+
 interface ChatWidgetProps {
   onClose?: () => void
   language?: string
@@ -73,7 +81,14 @@ function ChatWidget({ onClose, language: propLanguage = 'en' }: ChatWidgetProps 
   const [language, setLanguage] = useState(propLanguage)
   const [isCalendlyOpen, setIsCalendlyOpen] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null)
+  const audioChunksRef = useRef<Blob[]>([])
+  const audioContextRef = useRef<AudioContext | null>(null)
+  const analyserRef = useRef<AnalyserNode | null>(null)
   const recognitionRef = useRef<any>(null)
+  const audioRef = useRef<HTMLAudioElement | null>(null)
+  const silenceTimerRef = useRef<NodeJS.Timeout | null>(null)
 
   // Sync language with prop
   useEffect(() => {
@@ -326,80 +341,260 @@ function ChatWidget({ onClose, language: propLanguage = 'en' }: ChatWidgetProps 
     }
   }
 
-  const startListening = () => {
-    if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-      setError('Speech recognition is not supported in your browser')
-      return
-    }
+  const startListening = async () => {
+    try {
+      // Request microphone access
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
 
-    const SpeechRecognition = (window as any).webkitSpeechRecognition || (window as any).SpeechRecognition
-    const recognition = new SpeechRecognition()
+      // Setup MediaRecorder for final Whisper transcription
+      audioChunksRef.current = []
+      const mediaRecorder = new MediaRecorder(stream)
+      mediaRecorderRef.current = mediaRecorder
 
-    recognition.continuous = false
-    recognition.interimResults = false
-    recognition.lang = 'en-US'
+      // Setup Web Audio API for silence detection
+      const audioContext = new AudioContext()
+      audioContextRef.current = audioContext
+      const source = audioContext.createMediaStreamSource(stream)
+      const analyser = audioContext.createAnalyser()
+      analyserRef.current = analyser
+      analyser.fftSize = 2048
+      source.connect(analyser)
 
-    recognition.onstart = () => {
+      // Setup browser speech recognition for real-time transcription display
+      let finalTranscript = ''
+      if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+        const SpeechRecognition = (window as any).webkitSpeechRecognition || (window as any).SpeechRecognition
+        const recognition = new SpeechRecognition()
+        recognitionRef.current = recognition
+
+        recognition.continuous = true
+        recognition.interimResults = true
+        recognition.lang = language === 'en' ? 'en-US' : language === 'es' ? 'es-ES' : 'fr-FR'
+
+        recognition.onresult = (event: any) => {
+          let interimTranscript = ''
+
+          for (let i = event.resultIndex; i < event.results.length; i++) {
+            const transcript = event.results[i][0].transcript
+            if (event.results[i].isFinal) {
+              finalTranscript += transcript + ' '
+            } else {
+              interimTranscript += transcript
+            }
+          }
+
+          // Show real-time transcription in input
+          const newText = (finalTranscript + interimTranscript).trim()
+          setInput(newText)
+
+          // Scroll to end and move cursor to end
+          setTimeout(() => {
+            if (inputRef.current) {
+              inputRef.current.scrollLeft = inputRef.current.scrollWidth
+              inputRef.current.setSelectionRange(newText.length, newText.length)
+            }
+          }, 0)
+        }
+
+        recognition.onerror = (event: any) => {
+          console.error('Real-time transcription error:', event.error)
+          // Don't show error for interim transcription failures
+        }
+
+        recognition.start()
+      }
+
+      // Start recording
+      mediaRecorder.start()
       setIsListening(true)
       setError(null)
-    }
 
-    recognition.onresult = (event: any) => {
-      const transcript = event.results[0][0].transcript
-      setInput(transcript)
-      setIsListening(false)
-    }
-
-    recognition.onerror = (event: any) => {
-      console.error('Speech recognition error:', event.error)
-      setIsListening(false)
-      if (event.error !== 'aborted') {
-        setError('Could not recognize speech. Please try again.')
+      // Collect audio chunks
+      mediaRecorder.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+          audioChunksRef.current.push(event.data)
+        }
       }
-    }
 
-    recognition.onend = () => {
+      // Handle recording stop
+      mediaRecorder.onstop = async () => {
+        setIsListening(false)
+
+        // Stop browser speech recognition
+        if (recognitionRef.current) {
+          recognitionRef.current.stop()
+          recognitionRef.current = null
+        }
+
+        // Stop all tracks
+        stream.getTracks().forEach(track => track.stop())
+
+        // Close audio context
+        if (audioContextRef.current) {
+          audioContextRef.current.close()
+          audioContextRef.current = null
+        }
+
+        // Create blob from audio chunks
+        const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' })
+
+        // Send to Whisper API for final accurate transcription
+        try {
+          const formData = new FormData()
+          formData.append('audio', audioBlob)
+          formData.append('language', language === 'en' ? 'en' : language === 'es' ? 'es' : 'fr')
+
+          const response = await fetch('/api/stt', {
+            method: 'POST',
+            body: formData,
+          })
+
+          if (!response.ok) {
+            throw new Error('Transcription failed')
+          }
+
+          const result = await response.json()
+          // Replace interim transcription with accurate Whisper result
+          setInput(result.text)
+
+          // Scroll to end and move cursor to end
+          setTimeout(() => {
+            if (inputRef.current) {
+              inputRef.current.scrollLeft = inputRef.current.scrollWidth
+              inputRef.current.setSelectionRange(result.text.length, result.text.length)
+            }
+          }, 0)
+        } catch (error) {
+          console.error('Whisper transcription error:', error)
+          setError('Failed to transcribe audio. Please try again.')
+          // Keep the interim transcription if Whisper fails
+        }
+      }
+
+      // Silence detection loop
+      const checkSilence = () => {
+        if (!analyserRef.current || !mediaRecorderRef.current || mediaRecorderRef.current.state !== 'recording') {
+          return
+        }
+
+        const bufferLength = analyserRef.current.frequencyBinCount
+        const dataArray = new Uint8Array(bufferLength)
+        analyserRef.current.getByteTimeDomainData(dataArray)
+
+        // Calculate volume level (RMS)
+        let sum = 0
+        for (let i = 0; i < bufferLength; i++) {
+          const normalized = (dataArray[i] - 128) / 128
+          sum += normalized * normalized
+        }
+        const rms = Math.sqrt(sum / bufferLength)
+        const volume = rms * 100
+
+        // If volume is below threshold (silence), start/reset timer
+        if (volume < 1) {
+          if (!silenceTimerRef.current) {
+            silenceTimerRef.current = setTimeout(() => {
+              if (mediaRecorderRef.current && mediaRecorderRef.current.state === 'recording') {
+                mediaRecorderRef.current.stop()
+              }
+            }, 3000) // 3 seconds of silence
+          }
+        } else {
+          // Voice detected, clear silence timer
+          if (silenceTimerRef.current) {
+            clearTimeout(silenceTimerRef.current)
+            silenceTimerRef.current = null
+          }
+        }
+
+        // Continue checking
+        requestAnimationFrame(checkSilence)
+      }
+
+      // Start silence detection
+      checkSilence()
+
+    } catch (error) {
+      console.error('Microphone access error:', error)
+      setError('Could not access microphone. Please allow microphone access.')
       setIsListening(false)
     }
-
-    recognitionRef.current = recognition
-    recognition.start()
   }
 
   const stopListening = () => {
-    if (recognitionRef.current) {
-      recognitionRef.current.stop()
-      setIsListening(false)
+    if (silenceTimerRef.current) {
+      clearTimeout(silenceTimerRef.current)
+      silenceTimerRef.current = null
+    }
+    if (mediaRecorderRef.current && mediaRecorderRef.current.state === 'recording') {
+      mediaRecorderRef.current.stop()
     }
   }
 
-  const handleSpeak = (text: string, id: string) => {
+  const handleSpeak = async (text: string, id: string) => {
+    // Stop current audio if clicking on same message
     if (isSpeaking === id) {
-      window.speechSynthesis.cancel()
+      if (audioRef.current) {
+        audioRef.current.pause()
+        audioRef.current = null
+      }
       setIsSpeaking(null)
       return
     }
 
-    window.speechSynthesis.cancel()
-
-    const utterance = new SpeechSynthesisUtterance(text)
-    utterance.rate = 0.9
-    utterance.pitch = 1
-    utterance.volume = 1
-
-    utterance.onstart = () => {
-      setIsSpeaking(id)
+    // Stop any currently playing audio
+    if (audioRef.current) {
+      audioRef.current.pause()
+      audioRef.current = null
     }
 
-    utterance.onend = () => {
+    setIsSpeaking(id)
+
+    try {
+      // Call OpenAI TTS API endpoint
+      const response = await fetch('/api/tts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          text: text,
+          language: language, // Pass current language for natural multilingual support
+        }),
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to generate speech')
+      }
+
+      // Get audio blob from response
+      const audioBlob = await response.blob()
+      const audioUrl = URL.createObjectURL(audioBlob)
+
+      // Create and play audio element
+      const audio = new Audio(audioUrl)
+      audioRef.current = audio
+
+      audio.onended = () => {
+        setIsSpeaking(null)
+        URL.revokeObjectURL(audioUrl)
+        audioRef.current = null
+      }
+
+      audio.onerror = () => {
+        setIsSpeaking(null)
+        URL.revokeObjectURL(audioUrl)
+        audioRef.current = null
+        console.error('Audio playback error')
+      }
+
+      await audio.play()
+    } catch (error) {
+      console.error('TTS error:', error)
       setIsSpeaking(null)
+      setError('Failed to play audio')
+      setTimeout(() => setError(null), 3000)
     }
-
-    utterance.onerror = () => {
-      setIsSpeaking(null)
-    }
-
-    window.speechSynthesis.speak(utterance)
   }
 
   const handleSend = async (customMessage?: string) => {
@@ -655,7 +850,7 @@ function ChatWidget({ onClose, language: propLanguage = 'en' }: ChatWidgetProps 
                 <div className="message-actions">
                   <button
                     className="action-button"
-                    onClick={() => handleSpeak(msg.content, msg.id)}
+                    onClick={() => handleSpeak(msg.isHTML ? stripHTML(msg.content) : msg.content, msg.id)}
                     aria-label={isSpeaking === msg.id ? "Stop speaking" : "Read aloud"}
                     title={isSpeaking === msg.id ? "Stop speaking" : "Read aloud"}
                   >
@@ -675,7 +870,7 @@ function ChatWidget({ onClose, language: propLanguage = 'en' }: ChatWidgetProps 
                   </button>
                   <button
                     className="action-button"
-                    onClick={() => handleCopy(msg.content, msg.id)}
+                    onClick={() => handleCopy(msg.isHTML ? stripHTML(msg.content) : msg.content, msg.id)}
                     aria-label="Copy message"
                     title={copiedId === msg.id ? "Copied!" : "Copy"}
                   >
@@ -768,14 +963,17 @@ function ChatWidget({ onClose, language: propLanguage = 'en' }: ChatWidgetProps 
             </svg>
           )}
         </button>
-        <input
-          type="text"
-          placeholder={t.placeholder}
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={handleKeyDown}
-          disabled={isLoading}
-        />
+        <div className="input-container">
+          <input
+            ref={inputRef}
+            type="text"
+            placeholder={t.placeholder}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={handleKeyDown}
+            disabled={isLoading}
+          />
+        </div>
         <button
           className="send-button"
           onClick={isLoading ? handleStop : () => handleSend()}

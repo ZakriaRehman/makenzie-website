@@ -658,18 +658,18 @@
 }
 
 .microphone-button.listening {
-  background: #ef4444;
+  background: #3eb5aa;
   color: #ffffff;
-  border-color: #ef4444;
-  animation: pulse-red 1.5s infinite;
+  border-color: #3eb5aa;
+  animation: pulse-teal 1.5s infinite;
 }
 
-@keyframes pulse-red {
+@keyframes pulse-teal {
   0%, 100% {
-    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+    box-shadow: 0 0 0 0 rgba(62, 181, 170, 0.7);
   }
   50% {
-    box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+    box-shadow: 0 0 0 10px rgba(62, 181, 170, 0);
   }
 }
 
@@ -678,8 +678,13 @@
   cursor: not-allowed;
 }
 
-.chat-input input {
+.input-container {
   flex: 1;
+  position: relative;
+}
+
+.chat-input input {
+  width: 100%;
   padding: 13px 18px;
   border: 2px solid #e2e8f0;
   border-radius: 22px;
@@ -695,6 +700,56 @@
   border-color: #3eb5aa;
   background: #ffffff;
   box-shadow: 0 0 0 4px rgba(62, 181, 170, 0.08);
+}
+
+/* Waveform Animation */
+.waveform-container {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 24px;
+  pointer-events: none;
+}
+
+.waveform-bar {
+  width: 3px;
+  background: #cbd5e0;
+  border-radius: 2px;
+  animation: waveform 1.2s ease-in-out infinite;
+}
+
+.waveform-bar:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.waveform-bar:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.waveform-bar:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.waveform-bar:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.waveform-bar:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+@keyframes waveform {
+  0%, 100% {
+    height: 8px;
+  }
+  50% {
+    height: 20px;
+  }
 }
 
 .chat-input input::placeholder {
