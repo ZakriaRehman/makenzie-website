@@ -3,6 +3,7 @@ export interface Message {
   role: 'user' | 'assistant'
   content: string
   timestamp: Date
+  isHTML?: boolean
 }
 
 export interface ChatResponse {

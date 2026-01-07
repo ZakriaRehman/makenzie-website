@@ -6,10 +6,27 @@ import '@/styles/chat.css'
 
 const FloatingChatButton: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const [language, setLanguage] = useState('en')
+  const [languageMenuOpen, setLanguageMenuOpen] = useState(false)
 
   const toggleChat = () => {
     setIsOpen(!isOpen)
   }
+
+  const toggleLanguageMenu = () => {
+    setLanguageMenuOpen(!languageMenuOpen)
+  }
+
+  const selectLanguage = (lang: string) => {
+    setLanguage(lang)
+    setLanguageMenuOpen(false)
+  }
+
+  const languages = [
+    { code: 'en', flag: '🇺🇸', name: 'English' },
+    { code: 'es', flag: '🇪🇸', name: 'Español' },
+    { code: 'fr', flag: '🇫🇷', name: 'Français' }
+  ]
 
   return (
     <>
@@ -20,8 +37,8 @@ const FloatingChatButton: React.FC = () => {
         aria-label="Open chat"
       >
         <svg
-          width="24"
-          height="24"
+          width="30"
+          height="30"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -37,30 +54,71 @@ const FloatingChatButton: React.FC = () => {
           <div className="chat-modal-header">
             <div>
               <div style={{ fontSize: '18px', fontWeight: '700', marginBottom: '2px' }}>Marie</div>
-              <div style={{ fontSize: '13px', fontWeight: '400', opacity: '0.85' }}>Your AI Assistant</div>
+              <div style={{ fontSize: '13px', fontWeight: '400', opacity: '0.85', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#10b981', display: 'inline-block' }}></span>
+                Online
+              </div>
             </div>
-            <button
-              className="close-button"
-              onClick={toggleChat}
-              aria-label="Close chat"
-            >
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+            <div className="header-controls">
+              <div className={`language-pill ${languageMenuOpen ? 'expanded' : ''}`}>
+                {languageMenuOpen && (
+                  <div className="language-flags">
+                    {languages.map((lang) => (
+                      <button
+                        key={lang.code}
+                        className={`flag-button ${language === lang.code ? 'active' : ''}`}
+                        onClick={() => selectLanguage(lang.code)}
+                        aria-label={lang.name}
+                      >
+                        <span className="flag-icon">{lang.flag}</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+                <button
+                  className="globe-button"
+                  onClick={toggleLanguageMenu}
+                  aria-label="Select language"
+                >
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                  </svg>
+                </button>
+              </div>
+              <button
+                className="close-button"
+                onClick={toggleChat}
+                aria-label="Close chat"
               >
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-              </svg>
-            </button>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+            </div>
           </div>
           <div className="chat-modal-content">
-            <ChatWidget />
+            <ChatWidget language={language} />
           </div>
         </div>
       )}

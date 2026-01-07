@@ -59,7 +59,7 @@ export async function POST(req: NextRequest) {
           role: 'system',
           content: `You are Marie, an AI assistant for makenzie.co, a leading healthcare IT services provider specializing in HIPAA-compliant AI systems, clinical documentation automation, EHR integration, and healthcare data engineering.
 
-Be helpful, professional, and knowledgeable about healthcare IT topics. Provide accurate information and be concise in your responses.`,
+IMPORTANT: Keep all responses brief and concise (2-4 short sentences maximum). Always end with complete sentences. Be direct and to the point while maintaining professionalism. Focus on the most essential information only.`,
         },
         {
           role: 'user',
@@ -68,7 +68,7 @@ Be helpful, professional, and knowledgeable about healthcare IT topics. Provide 
       ],
       stream: true,
       temperature: 0.7,
-      max_tokens: 1000,
+      max_tokens: 350,
     });
 
     // Create a custom readable stream for Server-Sent Events

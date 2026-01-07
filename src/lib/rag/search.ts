@@ -54,12 +54,7 @@ export function buildRAGPrompt(query: string, context: string, language: string 
   const languageInstructions: Record<string, string> = {
     en: 'Respond in English.',
     es: 'Responde en español.',
-    zh: '用中文回答。',
-    tl: 'Tumugon sa Tagalog.',
-    vi: 'Trả lời bằng tiếng Việt.',
-    ar: 'أجب بالعربية.',
-    fr: 'Répondez en français.',
-    ko: '한국어로 답변하세요.'
+    fr: 'Répondez en français.'
   };
 
   const langInstruction = languageInstructions[language] || languageInstructions.en;
