@@ -4,6 +4,7 @@ export interface Message {
   content: string
   timestamp: Date
   isHTML?: boolean
+  audioPath?: string
 }
 
 export interface ChatResponse {

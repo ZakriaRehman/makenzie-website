@@ -141,6 +141,16 @@ function ChatWidget({ onClose, language: propLanguage = 'en' }: ChatWidgetProps 
           text: 'Do you work with clients globally?',
           variations: ['work globally', 'global clients', 'international clients', 'worldwide'],
           answer: 'Yes! We serve healthcare clients **worldwide**. We work across all time zones, have experience with international healthcare standards and regulations specializing in **US Healthcare**, and provide **HIPAA-compliant solutions** regardless of your location.'
+        },
+        {
+          text: 'How do you get started with a new client?',
+          variations: ['get started', 'onboarding', 'start working', 'new client process'],
+          answer: 'We usually start with a short **discovery conversation**. The goal is to understand your current workflows, challenges, and what you\'re trying to improve, whether that\'s customer communication, internal efficiency, or data flow. From there, we outline a practical approach **tailored to your needs**, rather than offering a one-size-fits-all solution.'
+        },
+        {
+          text: 'What does the first conversation focus on?',
+          variations: ['first conversation', 'initial discussion', 'first meeting', 'discovery call'],
+          answer: 'The first conversation is focused on **listening**. We discuss your pain points, existing systems, constraints, and priorities. This helps us identify where technology can actually add value and where it shouldn\'t. By the end of the call, both sides have **clarity on whether there\'s a strong fit** and what the next steps could look like.'
         }
       ]
     },
@@ -188,6 +198,16 @@ function ChatWidget({ onClose, language: propLanguage = 'en' }: ChatWidgetProps 
           text: '¿Trabajan con clientes a nivel mundial?',
           variations: ['trabajo mundial', 'clientes globales', 'clientes internacionales', 'mundial'],
           answer: '¡Sí! Servimos a clientes del sector salud **en todo el mundo**. Trabajamos en todas las zonas horarias, tenemos experiencia con estándares y regulaciones de salud internacionales especializándonos en **Salud de EE. UU.** y proporcionamos **soluciones compatibles con HIPAA** independientemente de su ubicación.'
+        },
+        {
+          text: '¿Cómo empiezan con un nuevo cliente?',
+          variations: ['empezar', 'incorporación', 'comenzar a trabajar', 'proceso nuevo cliente'],
+          answer: 'Normalmente comenzamos con una breve **conversación de descubrimiento**. El objetivo es comprender sus flujos de trabajo actuales, desafíos y qué está tratando de mejorar, ya sea comunicación con el cliente, eficiencia interna o flujo de datos. A partir de ahí, esbozamos un enfoque práctico **adaptado a sus necesidades**, en lugar de ofrecer una solución única para todos.'
+        },
+        {
+          text: '¿En qué se enfoca la primera conversación?',
+          variations: ['primera conversación', 'discusión inicial', 'primera reunión', 'llamada de descubrimiento'],
+          answer: 'La primera conversación se centra en **escuchar**. Discutimos sus puntos débiles, sistemas existentes, limitaciones y prioridades. Esto nos ayuda a identificar dónde la tecnología puede realmente agregar valor y dónde no debería. Al final de la llamada, ambas partes tienen **claridad sobre si hay un buen ajuste** y cuáles podrían ser los próximos pasos.'
         }
       ]
     },
@@ -235,6 +255,16 @@ function ChatWidget({ onClose, language: propLanguage = 'en' }: ChatWidgetProps 
           text: 'Travaillez-vous avec des clients dans le monde entier ?',
           variations: ['travail mondial', 'clients mondiaux', 'clients internationaux', 'monde entier'],
           answer: 'Oui ! Nous servons des clients du secteur de la santé **dans le monde entier**. Nous travaillons dans tous les fuseaux horaires, avons de l\'expérience avec les normes et réglementations de santé internationales spécialisés dans **la Santé aux États-Unis**, et fournissons des **solutions conformes HIPAA** quel que soit votre emplacement.'
+        },
+        {
+          text: 'Comment commencez-vous avec un nouveau client ?',
+          variations: ['commencer', 'intégration', 'débuter', 'processus nouveau client'],
+          answer: 'Nous commençons généralement par une courte **conversation de découverte**. L\'objectif est de comprendre vos flux de travail actuels, vos défis et ce que vous essayez d\'améliorer, qu\'il s\'agisse de communication client, d\'efficacité interne ou de flux de données. À partir de là, nous décrivons une approche pratique **adaptée à vos besoins**, plutôt que d\'offrir une solution universelle.'
+        },
+        {
+          text: 'Sur quoi se concentre la première conversation ?',
+          variations: ['première conversation', 'discussion initiale', 'première réunion', 'appel découverte'],
+          answer: 'La première conversation se concentre sur **l\'écoute**. Nous discutons de vos points de douleur, de vos systèmes existants, de vos contraintes et de vos priorités. Cela nous aide à identifier où la technologie peut réellement apporter de la valeur et où elle ne le devrait pas. À la fin de l\'appel, les deux parties ont **une clarté sur l\'adéquation** et sur les prochaines étapes possibles.'
         }
       ]
     }
@@ -266,11 +296,41 @@ function ChatWidget({ onClose, language: propLanguage = 'en' }: ChatWidgetProps 
     }
   }
 
+  const playPreGeneratedAudio = (audioPath: string, messageId: string) => {
+    // Stop any currently playing audio
+    if (audioRef.current) {
+      audioRef.current.pause()
+      audioRef.current = null
+    }
+
+    setIsSpeaking(messageId)
+
+    const audio = new Audio(audioPath)
+    audioRef.current = audio
+
+    audio.onended = () => {
+      setIsSpeaking(null)
+      audioRef.current = null
+    }
+
+    audio.onerror = () => {
+      setIsSpeaking(null)
+      audioRef.current = null
+      console.error('Audio playback error for:', audioPath)
+    }
+
+    audio.play().catch((error) => {
+      console.error('Failed to play pre-generated audio:', error)
+      setIsSpeaking(null)
+    })
+  }
+
   const handleQuickQuestion = (question: string) => {
     if (isLoading) return
 
     // Find the hardcoded answer for this question
-    const questionObj = quickQuestions.find((q: any) => q.text === question)
+    const questionIndex = quickQuestions.findIndex((q: any) => q.text === question)
+    const questionObj = quickQuestions[questionIndex]
 
     if (questionObj && questionObj.answer) {
       // Add user message
@@ -287,7 +347,8 @@ function ChatWidget({ onClose, language: propLanguage = 'en' }: ChatWidgetProps 
         role: 'assistant',
         content: '',
         timestamp: new Date(),
-        isHTML: true
+        isHTML: true,
+        audioPath: `/audio/${language}-faq-${questionIndex}.mp3`
       }
 
       setMessages(prev => [...prev, userMessage, assistantMessage])
@@ -531,7 +592,7 @@ function ChatWidget({ onClose, language: propLanguage = 'en' }: ChatWidgetProps 
     }
   }
 
-  const handleSpeak = async (text: string, id: string) => {
+  const handleSpeak = async (text: string, id: string, audioPath?: string) => {
     // Stop current audio if clicking on same message
     if (isSpeaking === id) {
       if (audioRef.current) {
@@ -539,6 +600,12 @@ function ChatWidget({ onClose, language: propLanguage = 'en' }: ChatWidgetProps 
         audioRef.current = null
       }
       setIsSpeaking(null)
+      return
+    }
+
+    // If there's a pre-generated audio file, use it
+    if (audioPath) {
+      playPreGeneratedAudio(audioPath, id)
       return
     }
 
@@ -551,7 +618,7 @@ function ChatWidget({ onClose, language: propLanguage = 'en' }: ChatWidgetProps 
     setIsSpeaking(id)
 
     try {
-      // Call OpenAI TTS API endpoint
+      // Call OpenAI TTS API endpoint for dynamic responses
       const response = await fetch('/api/tts', {
         method: 'POST',
         headers: {
@@ -605,13 +672,15 @@ function ChatWidget({ onClose, language: propLanguage = 'en' }: ChatWidgetProps 
     const normalizedInput = messageToSend.toLowerCase().trim()
     const demoQuestions = t.demoQuestions || []
 
-    const matchedDemo = demoQuestions.find((q: any) => {
+    const matchedDemoIndex = demoQuestions.findIndex((q: any) => {
       // Only exact match with question text
       return q.text.toLowerCase() === normalizedInput
     })
 
     // If we found a demo question match, handle it with streaming effect
-    if (matchedDemo) {
+    if (matchedDemoIndex !== -1) {
+      const matchedDemo = demoQuestions[matchedDemoIndex]
+
       const userMessage: Message = {
         id: `user-${Date.now()}`,
         role: 'user',
@@ -624,7 +693,8 @@ function ChatWidget({ onClose, language: propLanguage = 'en' }: ChatWidgetProps 
         role: 'assistant',
         content: '',
         timestamp: new Date(),
-        isHTML: true
+        isHTML: true,
+        audioPath: `/audio/${language}-demo-${matchedDemoIndex}.mp3`
       }
 
       setMessages(prev => [...prev, userMessage, assistantMessage])
@@ -850,7 +920,7 @@ function ChatWidget({ onClose, language: propLanguage = 'en' }: ChatWidgetProps 
                 <div className="message-actions">
                   <button
                     className="action-button"
-                    onClick={() => handleSpeak(msg.isHTML ? stripHTML(msg.content) : msg.content, msg.id)}
+                    onClick={() => handleSpeak(msg.isHTML ? stripHTML(msg.content) : msg.content, msg.id, msg.audioPath)}
                     aria-label={isSpeaking === msg.id ? "Stop speaking" : "Read aloud"}
                     data-tooltip={isSpeaking === msg.id ? "Stop" : "Listen"}
                   >

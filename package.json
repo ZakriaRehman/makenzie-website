@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "ingest-docs": "tsx scripts/ingest-documents.ts",
-    "test-rag": "tsx scripts/test-rag.ts"
+    "test-rag": "tsx scripts/test-rag.ts",
+    "generate-tts": "node scripts/generate-tts.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
