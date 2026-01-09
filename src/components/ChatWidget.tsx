@@ -456,11 +456,19 @@ function ChatWidget({ onClose, language: propLanguage = 'en' }: ChatWidgetProps 
 
           const result = await response.json()
           // Replace interim transcription with accurate Whisper result
-          setInput(result.text)
+          // Only update if the message hasn't been sent yet (input is not empty)
+          setInput((currentInput) => {
+            // If input is empty, user already sent the message, don't update
+            if (currentInput.trim() === '') {
+              return currentInput
+            }
+            // Otherwise, update with Whisper result
+            return result.text
+          })
 
-          // Scroll to end and move cursor to end
+          // Scroll to end and move cursor to end (only if input not empty)
           setTimeout(() => {
-            if (inputRef.current) {
+            if (inputRef.current && inputRef.current.value.trim() !== '') {
               inputRef.current.scrollLeft = inputRef.current.scrollWidth
               inputRef.current.setSelectionRange(result.text.length, result.text.length)
             }
