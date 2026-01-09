@@ -963,32 +963,28 @@
 .quick-questions {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
   gap: 6px;
   background: #fafbfc;
+  max-height: 200px;
+  opacity: 1;
   padding: 6px 16px 14px;
   overflow: hidden;
-  transition: grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-              opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-              padding 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-              margin 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: max-height 0.5s ease-in-out,
+              opacity 0.5s ease-in-out,
+              padding 0.5s ease-in-out;
 }
 
 .quick-questions.expanded {
-  grid-template-rows: 1fr;
+  max-height: 200px;
   opacity: 1;
+  padding: 6px 16px 14px;
 }
 
 .quick-questions.collapsed {
-  grid-template-rows: 0fr;
+  max-height: 0;
   opacity: 0;
-  padding: 0 16px;
-  margin: 0;
+  padding: 0 16px 0 16px;
   pointer-events: none;
-}
-
-.quick-questions > * {
-  min-height: 0;
 }
 
 .quick-question-chip {
