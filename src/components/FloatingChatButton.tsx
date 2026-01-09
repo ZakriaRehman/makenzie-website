@@ -6,11 +6,22 @@ import '@/styles/chat.css'
 
 const FloatingChatButton: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const [isClosing, setIsClosing] = useState(false)
   const [language, setLanguage] = useState('en')
   const [languageMenuOpen, setLanguageMenuOpen] = useState(false)
 
   const toggleChat = () => {
-    setIsOpen(!isOpen)
+    if (isOpen) {
+      // Start closing animation
+      setIsClosing(true)
+      // Wait for animation to complete before actually closing
+      setTimeout(() => {
+        setIsOpen(false)
+        setIsClosing(false)
+      }, 400) // Match the CSS animation duration
+    } else {
+      setIsOpen(true)
+    }
   }
 
   const toggleLanguageMenu = () => {
@@ -50,7 +61,7 @@ const FloatingChatButton: React.FC = () => {
 
       {/* Chat Widget Modal */}
       {isOpen && (
-        <div className="chat-modal">
+        <div className={`chat-modal ${isClosing ? 'closing' : ''}`}>
           <div className="chat-modal-header">
             <div>
               <div style={{ fontSize: '18px', fontWeight: '700', marginBottom: '2px' }}>Marie</div>

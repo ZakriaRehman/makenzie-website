@@ -1022,20 +1022,18 @@ function ChatWidget({ onClose, language: propLanguage = 'en' }: ChatWidgetProps 
               <polyline points="6 15 12 9 18 15"></polyline>
             </svg>
           </button>
-          {faqExpanded && (
-            <div className="quick-questions">
-                {quickQuestions.map((q: any, index: number) => (
-                  <button
-                    key={index}
-                    className="quick-question-chip"
-                    onClick={() => handleQuickQuestion(q.text)}
-                    disabled={isLoading}
-                  >
-                    <span className="chip-text">{q.text}</span>
-                  </button>
-                ))}
-              </div>
-          )}
+          <div className={`quick-questions ${faqExpanded ? 'expanded' : 'collapsed'}`}>
+            {quickQuestions.map((q: any, index: number) => (
+              <button
+                key={index}
+                className="quick-question-chip"
+                onClick={() => handleQuickQuestion(q.text)}
+                disabled={isLoading}
+              >
+                <span className="chip-text">{q.text}</span>
+              </button>
+            ))}
+          </div>
         </div>
       )}
 
