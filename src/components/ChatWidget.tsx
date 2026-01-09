@@ -298,8 +298,8 @@ function ChatWidget({ onClose, language: propLanguage = 'en' }: ChatWidgetProps 
       const tokens = tokenizeHTML(htmlAnswer)
 
       const streamAnswer = async () => {
-        // Brief delay to show typing indicator
-        await new Promise(resolve => setTimeout(resolve, 300))
+        // Show typing indicator for 500ms
+        await new Promise(resolve => setTimeout(resolve, 500))
 
         for (const token of tokens) {
           if (token.type === 'tag') {
@@ -657,8 +657,8 @@ function ChatWidget({ onClose, language: propLanguage = 'en' }: ChatWidgetProps 
       const tokens = tokenizeHTML(htmlAnswer)
 
       const streamAnswer = async () => {
-        // Brief delay to show typing indicator
-        await new Promise(resolve => setTimeout(resolve, 300))
+        // Show typing indicator for 500ms
+        await new Promise(resolve => setTimeout(resolve, 500))
 
         for (const token of tokens) {
           if (token.type === 'tag') {
@@ -731,8 +731,8 @@ function ChatWidget({ onClose, language: propLanguage = 'en' }: ChatWidgetProps 
       const tokens = tokenizeHTML(htmlAnswer)
 
       const streamAnswer = async () => {
-        // Brief delay to show typing indicator
-        await new Promise(resolve => setTimeout(resolve, 300))
+        // Show typing indicator for 500ms
+        await new Promise(resolve => setTimeout(resolve, 500))
 
         for (const token of tokens) {
           if (token.type === 'tag') {

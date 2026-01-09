@@ -50,17 +50,17 @@
   z-index: 1001;
   overflow: hidden;
   font-family: 'Inter', sans-serif;
-  animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: smoothSlideUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-@keyframes slideUp {
+@keyframes smoothSlideUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px) scale(0.95);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -951,6 +951,19 @@
   gap: 6px;
   padding: 6px 16px 14px;
   background: #fafbfc;
+  animation: slideDown 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-origin: top;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scaleY(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+  }
 }
 
 .quick-question-chip {
@@ -969,6 +982,34 @@
   background: #ffffff;
   text-align: center;
   min-height: 40px;
+  animation: chipFadeIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+}
+
+.quick-question-chip:nth-child(1) {
+  animation-delay: 0.05s;
+}
+
+.quick-question-chip:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.quick-question-chip:nth-child(3) {
+  animation-delay: 0.15s;
+}
+
+.quick-question-chip:nth-child(4) {
+  animation-delay: 0.2s;
+}
+
+@keyframes chipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .quick-question-chip:hover:not(:disabled) {
